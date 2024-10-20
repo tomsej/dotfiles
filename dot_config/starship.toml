@@ -40,8 +40,17 @@ symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
 
 [git_status]
-style = 'fg:green'
-format = '([$all_status$ahead_behind]($style) )'
+format = '[(\[$all_status$ahead_behind\] )](bold bright-yellow)'
+conflicted = '=${count}'
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+untracked = '?${count}'
+stashed = '≡${count}'
+modified = '!${count}'
+staged = '+${count}'
+renamed = '»${count}'
+deleted = '✘${count}'
 
 [fill]
 symbol = ' '
