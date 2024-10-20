@@ -1,0 +1,48 @@
+export PATH=/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:$PATH
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+FPATH=~/.zfunc:$FPATH
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
+export EZA_COLORS="$(vivid generate catppuccin-mocha)"
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+
+# # Init Starship - prompt
+eval "$(starship init zsh)"
+
+# Plugins
+source "${HOME}/.iterm2_shell_integration.zsh"
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+  source <(fzf --zsh)
+  autoload -Uz compinit
+  compinit -u
+  # this makes completion case insensitive
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+fi
+eval "$(zoxide init zsh)"
+# eval "$(ssh-agent -s)"
+
+# # Initialize Atuin
+zvm_after_init_commands+=(eval "$(atuin init zsh --disable-up-arrow)")
+
+# Aliases
+alias cd="z"
+alias ls="eza --long"
+alias mr="mise run --"
+alias ".."="cd .."
+alias "..."="cd ../.."
+alias "...."="cd ../../.."
+alias vim="nvim"
+alias vi="nvim"
+alias work="cd ~/Workspace"
+alias cm="chezmoi"
+# Env
+export AWS_REGION="eu-west-1"
+export AWS_DEFAULT_REGION="eu-west-1"
+export AWS_PROFILE="oddin"
+export EDITOR="code --wait"
+
+# Mise
+eval "$($(brew --prefix)/bin/mise activate zsh)"
