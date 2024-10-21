@@ -1,0 +1,50 @@
+packages:
+    universal:
+        taps:
+        brews:
+            - "atuin" # Shell history management
+            - "awscli" # Official Amazon AWS command-line interface
+            - "bat" # A cat clone with syntax highlighting and Git integration
+            - "bottom" # Graphical process/system monitor
+            - "borders" # Add borders to aerospace windows
+            - "dust" # A more intuitive version of du in rust
+            - "eza" # Better 'ls'
+            - "fd" # A simple, fast and user-friendly alternative to 'find'. Used also in yazi.
+            - "fzf" # A command-line fuzzy finder. Used also in yazi.
+            - "gh" # GitHub's official command-line tool
+            - "imagemagick" # Image manipulation tools. Used also in yazi.
+            - "jq" # Lightweight and flexible command-line JSON processor. Used also in yazi.
+            - "mas" # Mac App Store command-line interface
+            - "mise" # Polyglot tool version manager. It replaces tools like asdf, nvm, pyenv, rbenv, etc. 
+            - "neovim" # Hyperextensible Vim-based text editor
+            - "noti" # A utility for displaying a notification after a terminal process finishes
+            - "poppler" # PDF rendering library. Used also in yazi.
+            - "ripgrep" # A fast search tool like grep. Used also in yazi.
+            - "sevenzip" # 7-Zip is a file archiver with a high compression ratio. Used also in yazi.
+            - "starship" # The minimal, blazing-fast, and infinitely customizable prompt for any shell
+            - "wget" # Internet file retriever
+            - "yazi" # Terminal file manager 
+            - "zoxide" # A faster way to navigate your filesystem. Used also in yazi.
+            - "zsh-autosuggestions" # Fish-like autosuggestions for zsh
+            - "zsh-completions" # Additional completion definitions for Zsh
+            - "zsh-syntax-highlighting" # Fish shell-like syntax highlighting for Zsh
+            - "zsh-vi-mode" # Better and friendly vi(vim) mode plugin for Zsh
+        casks:
+            - "aerospace"
+            - "appcleaner"
+            - "calibre"
+            - "cleanshot"
+            - "dbeaver-community"
+            - "font-jetbrains-mono-nerd-font"
+            - "iterm2"
+            - "notion"
+            - "orbstack"
+            - "raycast"
+            - "shortcat"
+            - "slack"
+            - "superlist"
+            - "tunnelblick"
+            - "visual-studio-code"
+            - "zed"
+            - "zen-browser"
+        mas:
