@@ -39,6 +39,9 @@ alias vi="nvim"
 alias work="cd ~/Workspace"
 alias cm="chezmoi"
 alias cat="bat"
+alias fof="fd --type f --hidden --exclude .git | fzf --preview 'bat --color=always {}' | xargs code"
+alias fod="fd --type d --hidden --exclude .git | fzf --preview 'ls --color=always {}' | xargs code"
+alias fcd="fd --type d --hidden --exclude .git | fzf --preview 'ls --color=always {}' | xargs cd"
 
 # Env
 export AWS_REGION="eu-west-1"
@@ -50,7 +53,6 @@ export EDITOR="code --wait"
 eval "$($(brew --prefix)/bin/mise activate zsh)"
 
 # Functions
-# Functionsj
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"

@@ -20,6 +20,7 @@ packages:
             - "noti" # A utility for displaying a notification after a terminal process finishes
             - "poppler" # PDF rendering library. Used also in yazi.
             - "ripgrep" # A fast search tool like grep. Used also in yazi.
+            - "rga" # Ripgep for everything (pdf, images, code, etc.)
             - "sevenzip" # 7-Zip is a file archiver with a high compression ratio. Used also in yazi.
             - "starship" # The minimal, blazing-fast, and infinitely customizable prompt for any shell
             - "wget" # Internet file retriever
@@ -47,4 +48,5 @@ packages:
             - "visual-studio-code"
             - "zed"
             - "zen-browser"
+            - "jordanbaird-ice"
         mas:

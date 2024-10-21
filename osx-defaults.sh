@@ -1,3 +1,6 @@
+# No startup sound
+sudo nvram SystemAudioVolume=" "
+
 ###############################################################################
 # Finder
 ###############################################################################
@@ -43,6 +46,8 @@ defaults write com.apple.dock launchanim -bool false
 
 # Remove the delay when hiding/showing the Dock
 defaults write com.apple.Dock autohide-delay -float 0
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-time-modifier -float 0.5
 
 ###############################################################################
 # Global
@@ -81,4 +86,5 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain KeyRepeat -int 0.02
 
 # Set the initial key repeat delay to a very short duration
-defaults write NSGlobalDomain InitialKeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write com.apple.terminal StringEncodings -array 4
