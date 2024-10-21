@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -eufo pipefail
+
 # No startup sound
 sudo nvram SystemAudioVolume=" "
 
@@ -88,3 +92,15 @@ defaults write NSGlobalDomain KeyRepeat -int 0.02
 # Set the initial key repeat delay to a very short duration
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
 defaults write com.apple.terminal StringEncodings -array 4
+
+###############################################################################
+# Kill affected applications                                                  #
+###############################################################################
+
+for app in \
+	"Dock" \
+	"Finder" \
+	"SystemUIServer"; do
+	killall ${app} &>/dev/null
+done
+echo "Done. Note that some of these changes require a logout/restart to take effect."

@@ -1,0 +1,12 @@
+# to update run 'chezmoi apply, -R to refresh externals'
+[".zsh_plugins/fzf-tab"]
+type = "git-repo"
+url = "https://github.com/Aloxaf/fzf-tab"
+refreshPeriod = "168h"
+exclude = [
+  "*/.editorconfig",
+  "*/.gitattributes",
+  "*/.github",
+  "*/.gitignore",
+  "*/*.md",
+]
