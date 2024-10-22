@@ -76,7 +76,6 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Set the default size mode for table views to medium (conflicts with previous setting)
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
-
 # Disable window animations globally
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
@@ -88,9 +87,9 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate (were 2 and 15).
 # Set the key repeat rate to the fastest setting
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -float 2
 # Set the initial key repeat delay to a very short duration
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 defaults write com.apple.terminal StringEncodings -array 4
 
 ###############################################################################
