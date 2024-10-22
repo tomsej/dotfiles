@@ -30,6 +30,7 @@ packages:
             - "zsh-completions" # Additional completion definitions for Zsh
             - "zsh-syntax-highlighting" # Fish shell-like syntax highlighting for Zsh
             - "zsh-vi-mode" # Better and friendly vi(vim) mode plugin for Zsh
+            - "thefuck"
         casks:
             - "aerospace"
             - "appcleaner"

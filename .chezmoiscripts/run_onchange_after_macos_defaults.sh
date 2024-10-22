@@ -86,11 +86,11 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 # VScode enable repeast
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
+# Set a blazingly fast keyboard repeat rate (were 2 and 15).
 # Set the key repeat rate to the fastest setting
-defaults write NSGlobalDomain KeyRepeat -int 0.02
-
+defaults write NSGlobalDomain KeyRepeat -int 1
 # Set the initial key repeat delay to a very short duration
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write com.apple.terminal StringEncodings -array 4
 
 ###############################################################################

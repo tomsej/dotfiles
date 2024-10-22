@@ -53,8 +53,13 @@ if type brew &>/dev/null; then
   zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 fi
 
-# Initialize Zoxide for directory navigation
+# ---- Zoxide -----
 eval "$(zoxide init --cmd cd zsh)"
+
+# ---- TheFuck -----
+# thefuck alias
+eval $(thefuck --alias)
+eval $(thefuck --alias fck)
 
 # ==========================
 # Atuin Initialization
@@ -64,8 +69,9 @@ zvm_after_init_commands+=(eval "$(atuin init zsh --disable-up-arrow)")
 # ==========================
 # Aliases
 # ==========================
+alias fcd="cdi"
 alias fcode="cdi && code ."  # Find directories and edit with VSCode
-alias ffcode="fd --type f --hidden --exclude .git | fzf --preview 'bat --color=always {}' | xargs code"  # Find files
+alias ffcode="fzf --preview 'bat --color=always {}' | xargs code"  # Find files
 alias venva="source .venv/bin/activate" # activate venvs
 alias ls="eza --long --group-directories-first --icons"  # Use eza for ls
 alias mr="mise run --"  # Alias for mise run
@@ -77,6 +83,7 @@ alias vi="nvim"  # Use nvim as vi
 alias work="cd ~/Workspace"  # Go to Workspace directory
 alias cm="chezmoi"  # Alias for chezmoi
 alias cat="bat"  # Use bat instead of cat
+alias reload="cm apply && source ~/.zshrc"
 
 # ==========================
 # Environment Variables
@@ -92,8 +99,28 @@ export EDITOR="code --wait"  # Set default editor to VS Code
 eval "$($(brew --prefix)/bin/mise activate zsh)"
 
 # ==========================
+# FZF
+# ==========================
+# Catppuccin theme
+FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+
+# ==========================
 # Custom Functions
 # ==========================
+# yazi settings to enable exit and stay in changed directory
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"  # Run yazi with cwd file
@@ -101,4 +128,31 @@ function y() {
 		builtin cd -- "$cwd"  # Change directory if cwd is different
 	fi
 	rm -f -- "$tmp"  # Clean up temporary file
+}
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
 }
