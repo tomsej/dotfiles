@@ -53,6 +53,8 @@ defaults write com.apple.Dock autohide-delay -float 0
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-time-modifier -float 0.5
 
+defaults write -g NSUserKeyEquivalents -dict-add 'Minimize' '\0'
+
 ###############################################################################
 # Global
 ###############################################################################

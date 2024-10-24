@@ -183,7 +183,11 @@ if.app-id = 'org.mozilla.com.zen.browser'
 run = "move-node-to-workspace I"
 
 [[on-window-detected]]
-if.app-id = "com.superlist.superlist.app"
+if.app-id = "com.mikekreeki.tasks"
+run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = "com.meetinone.meetinone"
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]

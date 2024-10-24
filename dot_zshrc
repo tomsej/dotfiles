@@ -11,94 +11,6 @@ export EZA_COLORS="$(vivid generate catppuccin-mocha)"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # ==========================
-# Prompt Initialization
-# ==========================
-# Init Starship - prompt
-eval "$(starship init zsh)"
-
-# ==========================
-# Plugin Initialization
-# ==========================
-source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Initialize Zsh completion
-autoload -Uz compinit
-compinit -u
-
-source ~/.zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
-
-# Check if Homebrew is installed
-if type brew &>/dev/null; then
-  # Add Homebrew completions to FPATH
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  
-  # Source Zsh plugins
-  source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-  source <(fzf --zsh)
-  
-  # Set up case-insensitive matching for completion.
-  # This allows the completion system to match lowercase and uppercase letters interchangeably.
-  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-  # Set the colors used in the completion list to match the LS_COLORS environment variable.
-  # This ensures that the colors used in the completion output are consistent with those used in the terminal.
-  zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-  # Disable the menu selection for completion.
-  # This means that when you press Tab, it will not show a menu of completions; instead, it will directly complete the command.
-  zstyle ':completion:*' menu no
-  # Configure fzf-tab completion for the `cd` command.
-  # This sets up a preview for the fzf completion when using the `cd` command.
-  # The preview will show the contents of the directory being navigated to, with colors applied.
-  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-fi
-
-# ---- Zoxide -----
-eval "$(zoxide init --cmd cd zsh)"
-
-# ---- TheFuck -----
-# thefuck alias
-eval $(thefuck --alias)
-eval $(thefuck --alias fck)
-
-# ==========================
-# Atuin Initialization
-# ==========================
-zvm_after_init_commands+=(eval "$(atuin init zsh --disable-up-arrow)")
-
-# ==========================
-# Aliases
-# ==========================
-alias fcd="cdi"
-alias fcode="cdi && code ."  # Find directories and edit with VSCode
-alias ffcode="fzf --preview 'bat --color=always {}' | xargs code"  # Find files
-alias venva="source .venv/bin/activate" # activate venvs
-alias ls="eza --long --group-directories-first --icons"  # Use eza for ls
-alias mr="mise run --"  # Alias for mise run
-alias ".."="cd .."  # Go up one directory
-alias "..."="cd ../.."  # Go up two directories
-alias "...."="cd ../../.."  # Go up three directories
-alias vim="nvim"  # Use nvim as vim
-alias vi="nvim"  # Use nvim as vi
-alias work="cd ~/Workspace"  # Go to Workspace directory
-alias cm="chezmoi"  # Alias for chezmoi
-alias cat="bat"  # Use bat instead of cat
-alias reload="cm apply && source ~/.zshrc"
-
-# ==========================
-# Environment Variables
-# ==========================
-export AWS_REGION="eu-west-1"  # Set AWS region
-export AWS_DEFAULT_REGION="eu-west-1"  # Set default AWS region
-export AWS_PROFILE="oddin"  # Set AWS profile
-export EDITOR="code --wait"  # Set default editor to VS Code
-
-# ==========================
-# Mise Initialization
-# ==========================
-eval "$($(brew --prefix)/bin/mise activate zsh)"
-
-# ==========================
 # FZF
 # ==========================
 # Catppuccin theme
@@ -116,6 +28,105 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
+# ==========================
+# Prompt Initialization
+# ==========================
+# Init Starship - prompt
+eval "$(starship init zsh)"
+
+# ==========================
+# Plugin Initialization
+# ==========================
+source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Initialize Zsh completion
+autoload -Uz compinit
+compinit -u
+
+# Check if Homebrew is installed
+if type brew &>/dev/null; then
+  # Add Homebrew completions to FPATH
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  
+  # Source Zsh plugins
+  source ~/.zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
+  # source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+  source <(fzf --zsh)
+  
+fi
+
+# ---- Carapace -----
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+# ---- Completion settings -----
+# Set up case-insensitive matching for completion.
+# This allows the completion system to match lowercase and uppercase letters interchangeably.
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Set the colors used in the completion list to match the LS_COLORS environment variable.
+# This ensures that the colors used in the completion output are consistent with those used in the terminal.
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# Disable the menu selection for completion.
+# This means that when you press Tab, it will not show a menu of completions; instead, it will directly complete the command.
+zstyle ':completion:*' menu no
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+
+# ---- Zoxide -----
+eval "$(zoxide init --cmd cd zsh)"
+
+# ---- TheFuck -----
+# thefuck alias
+eval $(thefuck --alias)
+eval $(thefuck --alias fck)
+
+# ==========================
+# Atuin Initialization
+# ==========================
+zvm_after_init_commands+=(eval "$(atuin init zsh --disable-up-arrow)")
+
+# ==========================
+# Aliases
+# ==========================
+alias cdf="cdi"
+
+alias codef="cdi && code ."  # Find directories and edit with VSCode
+alias codeff="fzf --preview 'bat --color=always {}' | xargs code"  # Find files and edit with VSCode
+alias cf="codef"
+alias cff="codeff"
+
+alias vim="nvim"  # Use nvim as vim
+alias vi="nvim"  # Use nvim as vi
+alias vif="cdi && nvim ."  # Find directories and edit with Neovim
+alias viff="fzf --preview 'bat --color=always {}' | xargs nvim"  # Find files and edit with Neovim
+
+alias venva="source .venv/bin/activate" # activate venvs
+alias ls="eza --long --group-directories-first --icons"  # Use eza for ls
+alias mr="mise run --"  # Alias for mise run
+alias ".."="cd .."  # Go up one directory
+alias "..."="cd ../.."  # Go up two directories
+alias "...."="cd ../../.."  # Go up three directories
+alias work="cd ~/Workspace"  # Go to Workspace directory
+alias cm="chezmoi"  # Alias for chezmoi
+alias cat="bat"  # Use bat instead of cat
+alias reload="cm apply && source ~/.zshrc"
+
+# ==========================
+# Environment Variables
+# ==========================
+export AWS_REGION="eu-west-1"  # Set AWS region
+export AWS_DEFAULT_REGION="eu-west-1"  # Set default AWS region
+export AWS_PROFILE="oddin"  # Set AWS profile
+export EDITOR="code --wait"  # Set default editor to VS Code
+
+# ==========================
+# Mise Initialization
+# ==========================
+eval "$($(brew --prefix)/bin/mise activate zsh)"
 
 # ==========================
 # Custom Functions

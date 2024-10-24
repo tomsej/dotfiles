@@ -1,6 +1,7 @@
 packages:
     universal:
         taps:
+            - "rsteube/homebrew-tap"
         brews:
             - "atuin" # Shell history management
             - "awscli" # Official Amazon AWS command-line interface
@@ -30,7 +31,8 @@ packages:
             - "zsh-completions" # Additional completion definitions for Zsh
             - "zsh-syntax-highlighting" # Fish shell-like syntax highlighting for Zsh
             - "zsh-vi-mode" # Better and friendly vi(vim) mode plugin for Zsh
-            - "thefuck"
+            - "thefuck" # Correcting your previous console command
+            - "rsteube/tap/carapace" # A command-line autocompletion tool
         casks:
             - "aerospace"
             - "appcleaner"
@@ -50,4 +52,6 @@ packages:
             - "zed"
             - "zen-browser"
             - "jordanbaird-ice"
+            - "bettertouchtool"
+            - "workflowy"
         mas:
