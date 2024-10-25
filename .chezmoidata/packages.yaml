@@ -33,6 +33,7 @@ packages:
             - "zsh-vi-mode" # Better and friendly vi(vim) mode plugin for Zsh
             - "thefuck" # Correcting your previous console command
             - "rsteube/tap/carapace" # A command-line autocompletion tool
+            - "helix" # A blazingly fast new terminal for a modern age
         casks:
             - "aerospace"
             - "appcleaner"
@@ -53,5 +54,4 @@ packages:
             - "zen-browser"
             - "jordanbaird-ice"
             - "bettertouchtool"
-            - "workflowy"
         mas:
