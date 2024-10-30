@@ -114,6 +114,7 @@ alias work="cd ~/Workspace"  # Go to Workspace directory
 alias cm="chezmoi"  # Alias for chezmoi
 alias cat="bat"  # Use bat instead of cat
 alias reload="cm apply && source ~/.zshrc"
+alias brewup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew autoremove"
 
 # ==========================
 # Environment Variables

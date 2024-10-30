@@ -35,23 +35,25 @@ packages:
             - "rsteube/tap/carapace" # A command-line autocompletion tool
             - "helix" # A blazingly fast new terminal for a modern age
         casks:
-            - "aerospace"
-            - "appcleaner"
-            - "calibre"
-            - "cleanshot"
-            - "dbeaver-community"
-            - "font-jetbrains-mono-nerd-font"
-            - "iterm2"
-            - "notion"
-            - "orbstack"
-            - "raycast"
-            - "shortcat"
-            - "slack"
-            - "superlist"
-            - "tunnelblick"
-            - "visual-studio-code"
-            - "zed"
-            - "zen-browser"
-            - "jordanbaird-ice"
-            - "bettertouchtool"
+            - "aerospace" # Aerospace is not a known cask, might be a custom or private cask.
+            - "appcleaner" # Utility to uninstall applications and clean up related files.
+            - "calibre" # E-book management software.
+            - "cleanshot" # Screenshot tool with additional features.
+            - "dbeaver-community" # Free and open-source SQL database management tool.
+            - "font-jetbrains-mono-nerd-font" # Developer-focused font with a range of glyphs and icons.
+            - "iterm2" # Replacement for macOS's Terminal with extra features.
+            - "notion" # All-in-one workspace for note-taking, project management, and more.
+            - "orbstack" # Better docker desktop experience.
+            - "raycast" # Productivity tool to control your tools with a few keystrokes.
+            - "shortcat" # Keyboard productivity app for macOS.
+            - "slack" # Team communication and collaboration platform.
+            - "tunnelblick" # OpenVPN client for macOS.
+            - "visual-studio-code" # Popular open-source code editor by Microsoft.
+            - "zed" # Rust IDE with a focus on performance and safety.
+            - "zen-browser" # Browser for quick search
+            - "jordanbaird-ice" # Hide apps in manu bar
+            - "bettertouchtool" # Customizes gestures for the trackpad, mouse, and Touch Bar.
+            - "pronotes" # Make apple notes better
+            - "logseq" # A privacy-first platform for knowledge sharing and management
+            - "notunes" # A macOS app for disabling itunes
         mas:
