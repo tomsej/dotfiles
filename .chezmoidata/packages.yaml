@@ -34,6 +34,7 @@ packages:
             - "thefuck" # Correcting your previous console command
             - "rsteube/tap/carapace" # A command-line autocompletion tool
             - "helix" # A blazingly fast new terminal for a modern age
+            - "uv"
         casks:
             - "aerospace" # Aerospace is not a known cask, might be a custom or private cask.
             - "appcleaner" # Utility to uninstall applications and clean up related files.
@@ -56,4 +57,5 @@ packages:
             - "pronotes" # Make apple notes better
             - "logseq" # A privacy-first platform for knowledge sharing and management
             - "notunes" # A macOS app for disabling itunes
+            - "heynote"
         mas:

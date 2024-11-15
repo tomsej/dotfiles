@@ -98,7 +98,7 @@ outer.right =      2
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
+ctrl-alt-slash = 'layout tiles horizontal vertical'
 # alt-comma = 'layout accordion horizontal vertical'
 ctrl-alt-f = 'fullscreen'
 
@@ -127,6 +127,12 @@ ctrl-alt-p = 'workspace P'
 ctrl-alt-b = 'workspace B'
 ctrl-alt-n = 'workspace N'
 ctrl-alt-m = 'workspace M'
+ctrl-alt-q = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.C81C261C-F1E9-4443-8625-3365A5817CE9 QuickSight"
+ctrl-alt-a = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE AWS"
+ctrl-alt-s = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.heynote.app Heynote"
+ctrl-alt-d = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A JIRA"
+ctrl-alt-e = 'exec-and-forget ~/.config/aerospace/skratchpad.sh com.oecoway.friendlynetflix Streaming'
+ctrl-alt-r = 'exec-and-forget ~/.config/aerospace/skratchpad.sh org.jkiss.dbeaver.core.product DBeaver'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -186,10 +192,48 @@ run = "move-node-to-workspace I"
 if.app-id = "com.electron.logseq"
 run = "move-node-to-workspace N"
 
+# Enable floating for certain apps
+# Passwords
 [[on-window-detected]]
-if.app-id = "com.meetinone.meetinone"
-run = "move-node-to-workspace N"
+if.app-id = 'com.apple.Passwords'
+run = 'layout floating'
 
+# AWS
 [[on-window-detected]]
-if.app-id = "com.oecoway.friendlynetflix"
-run = "move-node-to-workspace M"
+if.app-id = 'com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE'
+run = 'layout floating'
+
+# JIRA
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A'
+run = 'layout floating'
+
+# QuickSight
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari.WebApp.C81C261C-F1E9-4443-8625-3365A5817CE9'
+run = 'layout floating'
+
+# Finder
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+# Heynote
+[[on-window-detected]]
+if.app-id = 'com.heynote.app'
+run = 'layout floating'
+
+# Notion
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = 'layout floating'
+
+# Youtube
+[[on-window-detected]]
+if.app-id = 'com.oecoway.friendlynetflix'
+run = 'layout floating'
+
+# DBeaver
+[[on-window-detected]]
+if.app-id = 'org.jkiss.dbeaver.core.product'
+run = 'layout floating'

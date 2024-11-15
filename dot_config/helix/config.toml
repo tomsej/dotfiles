@@ -2,7 +2,7 @@ theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"
-mouse = false
+mouse = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -11,3 +11,19 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[keys.normal]
+p = ":clipboard-paste-after"
+P = ":clipboard-paste-before"
+y = ":clipboard-yank-join"
+Y = ":clipboard-yank"
+R = ":clipboard-paste-replace"
+d = [":clipboard-yank-join", "delete_selection"]
+
+[keys.select]
+p = ":clipboard-paste-after"
+P = ":clipboard-paste-before"
+y = ":clipboard-yank-join"
+Y = ":clipboard-yank"
+R = ":clipboard-paste-replace"
+d = [":clipboard-yank-join", "delete_selection"]
