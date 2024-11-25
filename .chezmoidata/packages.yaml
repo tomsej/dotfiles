@@ -33,8 +33,10 @@ packages:
             - "zsh-vi-mode" # Better and friendly vi(vim) mode plugin for Zsh
             - "thefuck" # Correcting your previous console command
             - "rsteube/tap/carapace" # A command-line autocompletion tool
-            - "helix" # A blazingly fast new terminal for a modern age
             - "uv"
+            - "luarocks" # Lua package manager. Used in lazyvim.
+            - "lazygit" # Simple terminal UI for git commands
+            - "difftastic"
         casks:
             - "aerospace" # Aerospace is not a known cask, might be a custom or private cask.
             - "appcleaner" # Utility to uninstall applications and clean up related files.
