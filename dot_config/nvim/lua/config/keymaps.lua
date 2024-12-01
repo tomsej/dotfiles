@@ -17,3 +17,8 @@ vim.keymap.set("n", "<leader>tf", ":DbtRunFull<CR>", { noremap = true, silent = 
 vim.keymap.set("n", "<leader>tt", ":DbtTest<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t+", ":DbtListUpstreamModels<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>t-", ":DbtListDownstreamModels<CR>", { noremap = true, silent = true })
+
+--: home row goto end and start of line (same as in Helix editor) {{{
+vim.keymap.set({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
+vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
+--: }}}
