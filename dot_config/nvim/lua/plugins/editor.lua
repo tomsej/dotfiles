@@ -8,6 +8,19 @@ return {
       { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" }, desc = "Spider-b motion" },
       { "ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" }, desc = "Spider-ge motion" },
     },
+    opts = { skipInsignificantPunctuation = true },
+  },
+  {
+    "tzachar/highlight-undo.nvim",
     opts = {},
+  },
+  {
+    "nyngwang/murmur.lua",
+    lazy = false,
+    config = function()
+      require("murmur").setup({
+        max_len = 80,
+      })
+    end,
   },
 }

@@ -10,9 +10,7 @@ return {
           local root_files = {
             "pyproject.toml",
           }
-          return util.find_git_ancestor(fname)
-            or util.root_pattern(unpack(root_files))(fname)
-            or util.path.dirname(fname)
+          return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))(fname) or vim.fs.dirname(fname)
         end,
         settings = {
           basedpyright = {
@@ -28,9 +26,7 @@ return {
           local root_files = {
             "pyproject.toml",
           }
-          return util.find_git_ancestor(fname)
-            or util.root_pattern(unpack(root_files))(fname)
-            or util.path.dirname(fname)
+          return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))(fname) or vim.fs.dirname(fname)
         end,
       }
       opts.servers.pyright = {

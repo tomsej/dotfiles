@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0xFF1C00D2 inactive_color=0xff0F0F0F width=5.0'
+  'exec-and-forget borders active_color=0xFF1C00D2 inactive_color=0xff0F0F0F width=5.0',
 ]
 
 # Start AeroSpace at login
@@ -61,11 +61,11 @@ preset = 'qwerty'
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 0
-inner.vertical =   0
-outer.left =       2
-outer.bottom =     1
-outer.top =        1 
-outer.right =      2
+inner.vertical = 0
+outer.left = 2
+outer.bottom = 1
+outer.top = 1
+outer.right = 2
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -131,8 +131,6 @@ ctrl-alt-q = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari
 ctrl-alt-a = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE AWS"
 ctrl-alt-s = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.heynote.app Heynote"
 ctrl-alt-d = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A JIRA"
-ctrl-alt-e = 'exec-and-forget ~/.config/aerospace/skratchpad.sh com.oecoway.friendlynetflix Streaming'
-ctrl-alt-r = 'exec-and-forget ~/.config/aerospace/skratchpad.sh org.jkiss.dbeaver.core.product DBeaver'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -157,7 +155,10 @@ alt-shift-semicolon = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -191,6 +192,10 @@ run = "move-node-to-workspace I"
 [[on-window-detected]]
 if.app-id = "com.electron.logseq"
 run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = 'org.jkiss.dbeaver.core.product'
+run = "move-node-to-workspace M"
 
 # Enable floating for certain apps
 # Passwords
@@ -226,14 +231,4 @@ run = 'layout floating'
 # Notion
 [[on-window-detected]]
 if.app-id = 'notion.id'
-run = 'layout floating'
-
-# Youtube
-[[on-window-detected]]
-if.app-id = 'com.oecoway.friendlynetflix'
-run = 'layout floating'
-
-# DBeaver
-[[on-window-detected]]
-if.app-id = 'org.jkiss.dbeaver.core.product'
 run = 'layout floating'
