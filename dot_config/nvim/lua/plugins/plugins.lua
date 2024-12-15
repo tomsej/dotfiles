@@ -275,7 +275,32 @@ return {
       opts.options = opts.options or {}
       opts.options.component_separators = { left = "", right = "" }
       opts.sections = {
-        lualine_a = { "branch" },
+        lualine_a = {
+          {
+            'branch',
+            icon = '',
+          },
+          {
+            function()
+              if vim.b.gitsigns_status_dict then
+                local ahead = vim.b.gitsigns_status_dict.ahead or 0
+                local behind = vim.b.gitsigns_status_dict.behind or 0
+                local status = ""
+                
+                if ahead > 0 then
+                  status = status .. "↑" .. ahead
+                end
+                if behind > 0 then
+                  status = status .. "↓" .. behind
+                end
+                
+                return status ~= "" and status or ""
+              end
+              return ""
+            end,
+            color = { fg = colors.blue },
+          },
+        },
         lualine_b = {},
         lualine_c = {
           {
