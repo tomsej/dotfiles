@@ -1,0 +1,18 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = Radek Tomšej
+	email = radek@tomsej.cz
+[core]
+	editor = nvim
+	pager = delta
+[delta]
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+    features = catppuccin-mocha
+[include]
+    path = ./themes/delta/catppuccin.gitconfig

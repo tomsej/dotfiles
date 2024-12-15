@@ -1,7 +1,7 @@
 # ==========================
 # PATH and Environment Setup
 # ==========================
-export PATH=/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:$PATH:$HOME/go/bin
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 FPATH=~/.zfunc:$FPATH
 
@@ -115,14 +115,14 @@ alias cm="chezmoi"  # Alias for chezmoi
 alias cat="bat"  # Use bat instead of cat
 alias reload="cm apply && source ~/.zshrc"
 alias brewup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew autoremove"
-
+alias lsq="lsq -d Documents/logseq"
 # ==========================
 # Environment Variables
 # ==========================
 export AWS_REGION="eu-west-1"  # Set AWS region
 export AWS_DEFAULT_REGION="eu-west-1"  # Set default AWS region
 export AWS_PROFILE="oddin"  # Set AWS profile
-export EDITOR="code --wait"  # Set default editor to VS Code
+export EDITOR="nvim"  # Set default editor to VS Code
 
 # ==========================
 # Mise Initialization

@@ -11,7 +11,32 @@ return {
         --- Available style: "compact"|"fancy"|"minimal"
         style = "fancy", -- similar to the default nvim-notify style
       },
+      indent = { enabled = false },
       quickfile = { enabled = true },
+      dim = { enabled = true },
+      lazygit = {
+        enabled = true,
+        configure = true,
+        open_on_setup = true,
+        config = {
+          os = { editPreset = "nvim-remote" },
+          git = {
+            paging = {
+              pager = "delta --dark --paging=never --hunk-header-style=omit --file-style=omit --diff-so-fancy",
+            },
+          },
+          gui = { nerdFontsVersion = "3" },
+        },
+      },
+      terminal = {
+        win = {
+          relative = "editor",
+          position = "float",
+          width = 0.8,
+          height = 0.8,
+          border = "rounded",
+        },
+      },
       styles = {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
@@ -58,6 +83,13 @@ return {
           Snacks.git.blame_line()
         end,
         desc = "Git Blame Line",
+      },
+      {
+        "<c-t>",
+        function()
+          Snacks.terminal.toggle(nil, { cwd = vim.fn.getcwd() })
+        end,
+        desc = "Toggle Terminal",
       },
     },
     init = function()

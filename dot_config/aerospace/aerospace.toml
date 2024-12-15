@@ -123,12 +123,11 @@ ctrl-alt-1 = 'workspace 1'
 ctrl-alt-o = 'workspace O'
 ctrl-alt-i = 'workspace I'
 ctrl-alt-u = 'workspace U'
+ctrl-alt-a = 'workspace A'
 ctrl-alt-p = 'workspace P'
 ctrl-alt-b = 'workspace B'
 ctrl-alt-n = 'workspace N'
 ctrl-alt-m = 'workspace M'
-ctrl-alt-q = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.C81C261C-F1E9-4443-8625-3365A5817CE9 QuickSight"
-ctrl-alt-a = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE AWS"
 ctrl-alt-s = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.heynote.app Heynote"
 ctrl-alt-d = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A JIRA"
 
@@ -136,6 +135,7 @@ ctrl-alt-d = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-o = 'move-node-to-workspace O'
 alt-shift-i = 'move-node-to-workspace I'
+alt-shift-a = 'move-node-to-workspace A'
 alt-shift-u = 'move-node-to-workspace U'
 alt-shift-p = 'move-node-to-workspace P'
 alt-shift-b = 'move-node-to-workspace B'
@@ -194,8 +194,22 @@ if.app-id = "com.electron.logseq"
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]
+if.app-id = "notion.id"
+run = "move-node-to-workspace N"
+
+[[on-window-detected]]
 if.app-id = 'org.jkiss.dbeaver.core.product'
 run = "move-node-to-workspace M"
+
+# AWS
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE'
+run = "move-node-to-workspace A"
+
+# QuickSight
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari.WebApp.C81C261C-F1E9-4443-8625-3365A5817CE9'
+run = "move-node-to-workspace A"
 
 # Enable floating for certain apps
 # Passwords
@@ -203,19 +217,9 @@ run = "move-node-to-workspace M"
 if.app-id = 'com.apple.Passwords'
 run = 'layout floating'
 
-# AWS
-[[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE'
-run = 'layout floating'
-
 # JIRA
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A'
-run = 'layout floating'
-
-# QuickSight
-[[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.C81C261C-F1E9-4443-8625-3365A5817CE9'
 run = 'layout floating'
 
 # Finder
@@ -226,9 +230,4 @@ run = 'layout floating'
 # Heynote
 [[on-window-detected]]
 if.app-id = 'com.heynote.app'
-run = 'layout floating'
-
-# Notion
-[[on-window-detected]]
-if.app-id = 'notion.id'
 run = 'layout floating'
