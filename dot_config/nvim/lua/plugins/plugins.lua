@@ -272,6 +272,9 @@ return {
       }
 
       opts.theme = "catppuccin"
+      opts.options = opts.options or {}
+      opts.options.component_separators = { left = "", right = "" }
+      opts.options.section_separators = { left = "", right = "" }
       opts.sections = {
         lualine_a = { "branch" },
         lualine_b = {},
@@ -305,7 +308,6 @@ return {
               warn = { fg = colors.yellow },
               info = { fg = colors.blue },
             },
-            padding = { right = 2 },
           },
           {
             function()
@@ -314,7 +316,6 @@ return {
             end,
             color = { fg = colors.gray },
             gui = "bold",
-            padding = { left = 4 },
           },
         },
         lualine_y = {
