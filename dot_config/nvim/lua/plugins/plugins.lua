@@ -260,17 +260,31 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      opts.theme = "catppuccin" -- Set lualine theme to catppuccin
+      local colors = {
+        red = '#f38ba8',     -- Catppuccin Mocha red
+        yellow = '#f9e2af',  -- Catppuccin Mocha yellow
+        blue = '#89b4fa',    -- Catppuccin Mocha blue
+        green = '#a6e3a1',   -- Catppuccin Mocha green
+        gray = '#6c7086',    -- Catppuccin Mocha gray
+        white = '#cdd6f4',   -- Catppuccin Mocha white
+      }
+
+      opts.theme = "catppuccin"
       opts.sections = {
         lualine_a = { 'branch' },
         lualine_b = {},
         lualine_c = {
           {
             'diff',
-            symbols = {
-              added = ' ',
-              modified = ' ',
-              removed = ' ',
+            symbols = { 
+              added = ' ', 
+              modified = '󰝤 ', 
+              removed = ' ' 
+            },
+            diff_color = {
+              added = { fg = colors.green },
+              modified = { fg = colors.yellow },
+              removed = { fg = colors.red },
             },
           },
           {
@@ -282,9 +296,9 @@ return {
               info = ' ' 
             },
             diagnostics_color = {
-              error = { fg = '#f38ba8' },  -- Catppuccin Mocha red
-              warn = { fg = '#f9e2af' },   -- Catppuccin Mocha yellow
-              info = { fg = '#89b4fa' },   -- Catppuccin Mocha blue
+              error = { fg = colors.red },
+              warn = { fg = colors.yellow },
+              info = { fg = colors.blue },
             },
           },
         },
@@ -294,22 +308,21 @@ return {
               local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
               return path == "." and "" or path
             end,
-            color = { fg = "#6c7086" }, -- Back to original Catppuccin Mocha grey
+            color = { fg = colors.gray },
             gui = "bold",
           },
         },
         lualine_y = {
           {
             "filename",
-            path = 0, -- Show only filename
+            path = 0,
             icons_enabled = false,
             gui = "bold",
-            color = { fg = "#cdd6f4" }, -- Catppuccin Mocha text (white)
+            color = { fg = colors.white },
           },
         },
         lualine_z = {},
       }
-      -- Remove the winbar settings since we moved them to the statusline
       opts.winbar = nil
     end,
   },
