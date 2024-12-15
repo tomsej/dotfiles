@@ -298,7 +298,7 @@ return {
         lualine_y = {
           {
             "filename",
-            path = 1,  -- Show relative path
+            path = 0,  -- Show only filename
             icons_enabled = false,
             gui = "bold",
             color = { fg = "#cdd6f4" },  -- Catppuccin Mocha text (white)
