@@ -307,7 +307,7 @@ return {
               warn = { fg = colors.yellow },
               info = { fg = colors.blue },
             },
-            padding = { right = 4 },
+            padding = { right = 2 },
           },
           {
             function()
