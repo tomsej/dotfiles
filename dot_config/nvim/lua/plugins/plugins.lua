@@ -297,9 +297,10 @@ return {
         lualine_x = {
           {
             function()
-              return vim.fn.fnamemodify(vim.fn.expand('%:p'), ':h:.')
+              local path = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':.:h')
+              return path == '.' and '' or path
             end,
-            color = { fg = "#cdd6f4" },  -- Catppuccin Mocha text (white)
+            color = { fg = "#6c7086" },  -- Catppuccin Mocha grey
             gui = "bold",
           }
         },
