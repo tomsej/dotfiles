@@ -294,6 +294,13 @@ return {
         },
         lualine_x = {
           {
+            function()
+              return #vim.fn.getbufinfo({ buflisted = true })
+            end,
+            icon = "󰈙",
+            color = { fg = colors.blue },
+          },
+          {
             "diagnostics",
             sources = { "nvim_diagnostic" },
             symbols = {
