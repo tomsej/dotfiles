@@ -285,6 +285,21 @@ return {
     end,
   },
 
+  -- Lualine
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      opts.winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { { "filename", path = 1 } }, -- path = 1 shows relative path
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      }
+    end,
+  },
+
   -- Mason
   {
     "williamboman/mason.nvim",
