@@ -302,6 +302,7 @@ return {
             path = 1,  -- Show relative path
             icons_enabled = false,
             gui = "bold",
+            color = { fg = "#f9e2af" },  -- Catppuccin Mocha yellow
           }
         }
       }
