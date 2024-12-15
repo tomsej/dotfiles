@@ -292,10 +292,23 @@ return {
       opts.winbar = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { { "filename", path = 1 } }, -- path = 1 shows relative path
+        lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {},
+        lualine_z = {
+          {
+            "filename",
+            path = 1,  -- Show relative path
+            icons_enabled = true,
+            icon = { "", align = "right" },  -- Add an icon
+            color = { fg = "#a6e3a1", gui = "bold" },  -- Catppuccin green color
+            symbols = {
+              modified = "●",  -- Show a dot for modified files
+              readonly = "",  -- Show a lock for readonly files
+              unnamed = "[No Name]",
+            }
+          }
+        }
       }
     end,
   },
