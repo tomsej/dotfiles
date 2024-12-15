@@ -17,3 +17,7 @@ vim.api.nvim_set_keymap("n", "C", '"cC', { noremap = true, silent = true })
 vim.keymap.set({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
 vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
 --: }}}
+
+-- Buffer navigation
+vim.keymap.set("n", "<C-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
