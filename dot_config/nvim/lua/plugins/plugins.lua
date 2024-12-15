@@ -55,35 +55,6 @@ return {
     },
   },
 
-  -- Buffer Navigation
-  -- Cycle Buffers
-  { -- https://github.com/ghillb/cybu.nvim
-    "ghillb/cybu.nvim",
-    event = "BufAdd",
-    config = function()
-      require("cybu").setup({
-        display_time = 500,
-        position = {
-          anchor = "topcenter",
-          max_win_height = 10,
-        },
-        style = {
-          padding = 3,
-          hide_buffer_id = true,
-          devicons = {
-            enabled = false,
-          },
-        },
-      })
-    end,
-    keys = {
-      { "<S-j>", "<Plug>(CybuLastusedPrev)" },
-      { "<S-k>", "<Plug>(CybuLastusedNext)" },
-      { "<c-h>", "<Plug>(CybuLastusedPrev)" },
-      { "<c-l>", "<Plug>(CybuLastusedNext)" },
-    },
-  },
-
   -- Formatting
   {
     "stevearc/conform.nvim",
@@ -297,23 +268,23 @@ return {
         lualine_x = {
           {
             function()
-              local path = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':.:h')
-              return path == '.' and '' or path
+              local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
+              return path == "." and "" or path
             end,
-            color = { fg = "#6c7086" },  -- Catppuccin Mocha grey
+            color = { fg = "#6c7086" }, -- Catppuccin Mocha grey
             gui = "bold",
-          }
+          },
         },
         lualine_y = {
           {
             "filename",
-            path = 0,  -- Show only filename
+            path = 0, -- Show only filename
             icons_enabled = false,
             gui = "bold",
-            color = { fg = "#cdd6f4" },  -- Catppuccin Mocha text (white)
-          }
+            color = { fg = "#cdd6f4" }, -- Catppuccin Mocha text (white)
+          },
         },
-        lualine_z = {}
+        lualine_z = {},
       }
     end,
   },
