@@ -269,7 +269,7 @@ return {
               local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
               return path == "." and "" or path
             end,
-            color = { fg = "#6c7086" }, -- Catppuccin Mocha grey
+            color = { fg = "#a6adc8" }, -- Catppuccin Mocha subtext0 (brighter gray)
             gui = "bold",
           },
         },
