@@ -289,6 +289,8 @@ return {
               removed = { fg = colors.red },
             },
           },
+        },
+        lualine_x = {
           {
             "diagnostics",
             sources = { "nvim_diagnostic" },
@@ -304,8 +306,6 @@ return {
               info = { fg = colors.blue },
             },
           },
-        },
-        lualine_x = {
           {
             function()
               local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
