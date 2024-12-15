@@ -299,14 +299,8 @@ return {
           {
             "filename",
             path = 1,  -- Show relative path
-            icons_enabled = true,
-            icon = { "", align = "right" },  -- Add an icon
-            color = { fg = "#a6e3a1", gui = "bold" },  -- Catppuccin green color
-            symbols = {
-              modified = "●",  -- Show a dot for modified files
-              readonly = "",  -- Show a lock for readonly files
-              unnamed = "[No Name]",
-            }
+            icons_enabled = false,
+            color = { fg = "#cdd6f4", gui = "bold" },  -- Catppuccin Mocha text color (bright)
           }
         }
       }
