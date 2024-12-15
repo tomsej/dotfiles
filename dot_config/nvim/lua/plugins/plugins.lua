@@ -55,37 +55,6 @@ return {
     },
   },
 
-  -- Arena
-  {
-    "dzfrias/arena.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- Save scratch files in a dedicated directory
-      save_dir = vim.fn.stdpath("data") .. "/arena",
-      -- Create new scratch buffers with these settings
-      initial_buf_opts = {
-        buftype = "",
-        bufhidden = "hide",
-        swapfile = false,
-      },
-      -- Default filetype for new scratch buffers
-      default_filetype = "markdown",
-      -- Border style for the selector window
-      border = "rounded",
-      -- Show filename in the buffer
-      show_filename = true,
-    },
-    keys = {
-      {
-        "<C-p>",
-        function()
-          require("arena").toggle()
-        end,
-        desc = "Toggle Arena scratch buffer",
-      },
-    },
-  },
-
   -- Formatting
   {
     "stevearc/conform.nvim",
