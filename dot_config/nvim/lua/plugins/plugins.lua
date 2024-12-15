@@ -282,21 +282,32 @@ return {
           },
           {
             function()
-              if vim.b.gitsigns_status_dict then
-                local ahead = vim.b.gitsigns_status_dict.ahead or 0
-                local behind = vim.b.gitsigns_status_dict.behind or 0
-                local status = ""
-
-                if ahead > 0 then
-                  status = status .. "↑" .. ahead
+              local function run_git_cmd(cmd)
+                local handle = io.popen(cmd)
+                if handle then
+                  local result = handle:read("*a")
+                  handle:close()
+                  return result:gsub("\n", "")
                 end
-                if behind > 0 then
-                  status = status .. "↓" .. behind
-                end
-
-                return status ~= "" and status or ""
+                return ""
               end
-              return ""
+
+              -- Check if in git repo
+              local is_git = run_git_cmd("git rev-parse --is-inside-work-tree 2>/dev/null")
+              if is_git == "" then return "" end
+
+              local ahead = tonumber(run_git_cmd("git rev-list --count HEAD @{u}..HEAD 2>/dev/null") or "0")
+              local behind = tonumber(run_git_cmd("git rev-list --count HEAD..@{u} 2>/dev/null") or "0")
+              
+              local status = ""
+              if ahead and ahead > 0 then
+                status = status .. "↑" .. ahead
+              end
+              if behind and behind > 0 then
+                status = status .. "↓" .. behind
+              end
+              
+              return status
             end,
             color = { fg = colors.blue },
           },
