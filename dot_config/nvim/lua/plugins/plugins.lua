@@ -299,6 +299,7 @@ return {
             end,
             icon = "󰈙",
             color = { fg = colors.blue },
+            icons_enabled = 1,
           },
           {
             "diagnostics",
