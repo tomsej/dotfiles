@@ -277,8 +277,8 @@ return {
       opts.sections = {
         lualine_a = {
           {
-            'branch',
-            icon = '',
+            "branch",
+            icon = "",
           },
           {
             function()
@@ -286,14 +286,14 @@ return {
                 local ahead = vim.b.gitsigns_status_dict.ahead or 0
                 local behind = vim.b.gitsigns_status_dict.behind or 0
                 local status = ""
-                
+
                 if ahead > 0 then
                   status = status .. "↑" .. ahead
                 end
                 if behind > 0 then
                   status = status .. "↓" .. behind
                 end
-                
+
                 return status ~= "" and status or ""
               end
               return ""
