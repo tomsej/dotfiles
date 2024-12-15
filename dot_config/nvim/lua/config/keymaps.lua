@@ -2,16 +2,13 @@
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
 -- delete without yanking
-vim.api.nvim_set_keymap("n", "d", '"dd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "dd", '"ddd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "D", '"dD', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "d", '"dd', { desc = "Delete without yanking", noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "dd", '"ddd', { desc = "Delete line without yanking", noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "D", '"dD', { desc = "Delete to end without yanking", noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("v", "d", '"dd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "dd", '"ddd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "D", '"dD', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "c", '"cc', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "C", '"cC', { noremap = true, silent = true })
+-- change without yanking (normal mode only)
+vim.keymap.set("n", "c", '"cc', { desc = "Change without yanking", noremap = true, silent = true })
+vim.keymap.set("n", "C", '"cC', { desc = "Change to end without yanking", noremap = true, silent = true })
 
 --: home row goto end and start of line (same as in Helix editor) {{{
 vim.keymap.set({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
