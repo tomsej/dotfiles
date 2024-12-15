@@ -56,20 +56,31 @@ return {
   },
 
   -- Buffer Navigation
-  {
+  -- Cycle Buffers
+  { -- https://github.com/ghillb/cybu.nvim
     "ghillb/cybu.nvim",
-    event = "VeryLazy",
+    event = "BufAdd",
+    config = function()
+      require("cybu").setup({
+        display_time = 500,
+        position = {
+          anchor = "topcenter",
+          max_win_height = 10,
+        },
+        style = {
+          padding = 3,
+          hide_buffer_id = true,
+          devicons = {
+            enabled = false,
+          },
+        },
+      })
+    end,
     keys = {
-      { 
-        "<S-j>", 
-        "<Plug>(CybuPrev)", 
-        desc = "Previous buffer" 
-      },
-      { 
-        "<S-l>", 
-        "<Plug>(CybuNext)", 
-        desc = "Next buffer" 
-      },
+      { "<S-j>", "<Plug>(CybuLastusedPrev)" },
+      { "<S-k>", "<Plug>(CybuLastusedNext)" },
+      { "<c-h>", "<Plug>(CybuLastusedPrev)" },
+      { "<c-l>", "<Plug>(CybuLastusedNext)" },
     },
   },
 
@@ -211,7 +222,7 @@ return {
         desc = "Dismiss All Notifications",
       },
       {
-        "<leader>bd",
+        "<leader>bx",
         function()
           Snacks.bufdelete()
         end,

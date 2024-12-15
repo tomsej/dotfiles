@@ -116,6 +116,7 @@ alias cat="bat"  # Use bat instead of cat
 alias reload="cm apply && source ~/.zshrc"
 alias brewup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew autoremove"
 alias lsq="lsq -d Documents/logseq"
+
 # ==========================
 # Environment Variables
 # ==========================
@@ -167,4 +168,36 @@ _fzf_comprun() {
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
+}
+
+function aid() {
+    echo "Select a model:"
+    echo "1) claude-3-5-sonnet-20241022"
+    echo "2) gpt-4o"
+    echo "3) gemini/gemini-2.0-flash-exp"
+    
+    # Prompt for user input
+    # Prompt for user input
+    echo -n "Enter the number of your choice (1-3): "
+    read choice
+    echo # Move to the next line after input
+
+    case "$choice" in
+        1)
+            model="sonnet"
+            ;;
+        2)
+            model="4o"
+            ;;
+        3)
+            model="flash"
+            ;;
+        *)
+            echo "Invalid choice. Please select 1, 2, or 3."
+            return
+            ;;
+    esac
+
+    # Run the command with the selected model
+    aider --model "$model" --editor nvim --architect --cache-prompts --no-stream --user-input-color "#a6d189" --tool-error-color "#e78284" --tool-warning-color "#e5c890" --assistant-output-color "#b4befe" --code-theme monokai
 }
