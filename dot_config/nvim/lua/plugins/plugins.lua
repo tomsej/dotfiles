@@ -278,7 +278,6 @@ return {
         lualine_a = {
           {
             "branch",
-            icon = "",
           },
           {
             function()
@@ -294,22 +293,23 @@ return {
 
               -- Check if in git repo
               local is_git = run_git_cmd("git rev-parse --is-inside-work-tree 2>/dev/null")
-              if is_git == "" then return "" end
+              if is_git == "" then
+                return ""
+              end
 
               local ahead = tonumber(run_git_cmd("git rev-list --count HEAD @{u}..HEAD 2>/dev/null") or "0")
               local behind = tonumber(run_git_cmd("git rev-list --count HEAD..@{u} 2>/dev/null") or "0")
-              
+
               local status = ""
-              if ahead and ahead > 0 then
-                status = status .. "↑" .. ahead
-              end
-              if behind and behind > 0 then
+              if behind then
                 status = status .. "↓" .. behind
               end
-              
+              if ahead then
+                status = status .. " ↑" .. ahead
+              end
+
               return status
             end,
-            color = { fg = colors.blue },
           },
         },
         lualine_b = {},
