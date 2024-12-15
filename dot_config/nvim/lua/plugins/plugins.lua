@@ -1,3 +1,5 @@
+local icons = LazyVim.config.icons
+
 return {
   -- Coding
   {
@@ -132,7 +134,7 @@ return {
     "okuuva/auto-save.nvim",
     event = { "InsertLeave", "TextChanged" },
     opts = {
-      debounce_delay = 5000,
+      debounce_delay = 1000,
     },
   },
   {
@@ -261,25 +263,25 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       local colors = {
-        red = '#f38ba8',     -- Catppuccin Mocha red
-        yellow = '#f9e2af',  -- Catppuccin Mocha yellow
-        blue = '#89b4fa',    -- Catppuccin Mocha blue
-        green = '#a6e3a1',   -- Catppuccin Mocha green
-        gray = '#6c7086',    -- Catppuccin Mocha gray
-        white = '#cdd6f4',   -- Catppuccin Mocha white
+        red = "#f38ba8", -- Catppuccin Mocha red
+        yellow = "#f9e2af", -- Catppuccin Mocha yellow
+        blue = "#89b4fa", -- Catppuccin Mocha blue
+        green = "#a6e3a1", -- Catppuccin Mocha green
+        gray = "#6c7086", -- Catppuccin Mocha gray
+        white = "#cdd6f4", -- Catppuccin Mocha white
       }
 
       opts.theme = "catppuccin"
       opts.sections = {
-        lualine_a = { 'branch' },
+        lualine_a = { "branch" },
         lualine_b = {},
         lualine_c = {
           {
-            'diff',
-            symbols = { 
-              added = ' ', 
-              modified = '󰝤 ', 
-              removed = ' ' 
+            "diff",
+            symbols = {
+              added = " ",
+              modified = "󰝤 ",
+              removed = " ",
             },
             diff_color = {
               added = { fg = colors.green },
@@ -288,12 +290,13 @@ return {
             },
           },
           {
-            'diagnostics',
-            sources = { 'nvim_diagnostic' },
-            symbols = { 
-              error = ' ', 
-              warn = ' ', 
-              info = ' ' 
+            "diagnostics",
+            sources = { "nvim_diagnostic" },
+            symbols = {
+              error = icons.diagnostics.Error,
+              warn = icons.diagnostics.Warn,
+              info = icons.diagnostics.Info,
+              hint = icons.diagnostics.Hint,
             },
             diagnostics_color = {
               error = { fg = colors.red },
