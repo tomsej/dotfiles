@@ -275,11 +275,16 @@ return {
           },
           {
             'diagnostics',
-            symbols = {
-              error = ' ',
-              warn = ' ',
-              info = ' ',
-              hint = ' ',
+            sources = { 'nvim_diagnostic' },
+            symbols = { 
+              error = ' ', 
+              warn = ' ', 
+              info = ' ' 
+            },
+            diagnostics_color = {
+              error = { fg = '#f38ba8' },  -- Catppuccin Mocha red
+              warn = { fg = '#f9e2af' },   -- Catppuccin Mocha yellow
+              info = { fg = '#89b4fa' },   -- Catppuccin Mocha blue
             },
           },
         },
