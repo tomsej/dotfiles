@@ -55,6 +55,24 @@ return {
     },
   },
 
+  -- Buffer Navigation
+  {
+    "ghillb/cybu.nvim",
+    event = "VeryLazy",
+    keys = {
+      { 
+        "<S-j>", 
+        "<Plug>(CybuPrev)", 
+        desc = "Previous buffer" 
+      },
+      { 
+        "<S-l>", 
+        "<Plug>(CybuNext)", 
+        desc = "Next buffer" 
+      },
+    },
+  },
+
   -- Formatting
   {
     "stevearc/conform.nvim",
