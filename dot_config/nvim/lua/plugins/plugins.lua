@@ -294,7 +294,15 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {},
-        lualine_x = {},
+        lualine_x = {
+          {
+            function()
+              return vim.fn.fnamemodify(vim.fn.expand('%:p'), ':h:.')
+            end,
+            color = { fg = "#cdd6f4" },  -- Catppuccin Mocha text (white)
+            gui = "bold",
+          }
+        },
         lualine_y = {
           {
             "filename",
