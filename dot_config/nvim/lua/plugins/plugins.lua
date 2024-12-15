@@ -295,15 +295,16 @@ return {
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {
+        lualine_y = {},
+        lualine_z = {
           {
             "filename",
-            path = 1, -- Show relative path
+            path = 1,  -- Show relative path
             icons_enabled = false,
-            color = { fg = "#f9e2af" }, -- Catppuccin Mocha yellow
-          },
-        },
-        lualine_z = {},
+            gui = "bold",
+            color = { fg = "#cdd6f4" },  -- Catppuccin Mocha text (white)
+          }
+        }
       }
     end,
   },
