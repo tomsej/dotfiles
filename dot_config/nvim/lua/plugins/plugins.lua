@@ -314,6 +314,7 @@ return {
             end,
             color = { fg = colors.gray },
             gui = "bold",
+            padding = { left = 4 },
           },
         },
         lualine_y = {
