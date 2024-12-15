@@ -264,7 +264,25 @@ return {
       opts.sections = {
         lualine_a = { 'branch' },
         lualine_b = {},
-        lualine_c = {},
+        lualine_c = {
+          {
+            'diff',
+            symbols = {
+              added = ' ',
+              modified = ' ',
+              removed = ' ',
+            },
+          },
+          {
+            'diagnostics',
+            symbols = {
+              error = ' ',
+              warn = ' ',
+              info = ' ',
+              hint = ' ',
+            },
+          },
+        },
         lualine_x = {
           {
             function()
