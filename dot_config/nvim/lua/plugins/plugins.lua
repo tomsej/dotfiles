@@ -162,11 +162,6 @@ return {
         open_on_setup = true,
         config = {
           os = { editPreset = "nvim-remote" },
-          git = {
-            paging = {
-              pager = "delta --dark --paging=never --hunk-header-style=omit --file-style=omit --diff-so-fancy",
-            },
-          },
           gui = { nerdFontsVersion = "3" },
         },
       },
@@ -260,13 +255,6 @@ return {
       })
     end,
   },
-
-  -- Disabled plugins
-  { "akinsho/bufferline.nvim", enabled = false },
-  { "mfussenegger/nvim-lint", enabled = false },
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-  { "echasnovski/mini.pairs", enabled = false },
-  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 
   -- Mason
   {
