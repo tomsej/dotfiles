@@ -262,8 +262,7 @@ return {
     opts = function(_, opts)
       opts.theme = "catppuccin" -- Set lualine theme to catppuccin
       opts.sections = {
-        lualine_a = {},
-        lualine_b = {
+        lualine_a = {
           {
             function()
               local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
@@ -273,7 +272,7 @@ return {
             gui = "bold",
           },
         },
-        lualine_c = {
+        lualine_b = {
           {
             "filename",
             path = 0, -- Show only filename
@@ -282,6 +281,7 @@ return {
             color = { fg = "#cdd6f4" }, -- Catppuccin Mocha text (white)
           },
         },
+        lualine_c = {},
         lualine_x = {},
         lualine_y = {},
         lualine_z = { 'branch' }, -- Move branch here
