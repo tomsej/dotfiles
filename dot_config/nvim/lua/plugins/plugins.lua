@@ -289,22 +289,21 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      opts.theme = "catppuccin"  -- Set lualine theme to catppuccin
+      opts.theme = "catppuccin" -- Set lualine theme to catppuccin
       opts.winbar = {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {},
-        lualine_z = {
+        lualine_y = {
           {
             "filename",
-            path = 1,  -- Show relative path
+            path = 1, -- Show relative path
             icons_enabled = false,
-            gui = "bold",
-            color = { fg = "#f9e2af" },  -- Catppuccin Mocha yellow
-          }
-        }
+            color = { fg = "#f9e2af" }, -- Catppuccin Mocha yellow
+          },
+        },
+        lualine_z = {},
       }
     end,
   },
