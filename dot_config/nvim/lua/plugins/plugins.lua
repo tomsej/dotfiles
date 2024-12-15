@@ -262,16 +262,20 @@ return {
     opts = function(_, opts)
       opts.theme = "catppuccin" -- Set lualine theme to catppuccin
       opts.sections = {
-        lualine_a = {
+        lualine_a = { 'branch' },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {
           {
             function()
               local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
               return path == "." and "" or path
             end,
+            color = { fg = "#6c7086" }, -- Back to original Catppuccin Mocha grey
             gui = "bold",
           },
         },
-        lualine_b = {
+        lualine_y = {
           {
             "filename",
             path = 0, -- Show only filename
@@ -280,9 +284,6 @@ return {
             color = { fg = "#cdd6f4" }, -- Catppuccin Mocha text (white)
           },
         },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { "branch" }, -- Move branch here
         lualine_z = {},
       }
       -- Remove the winbar settings since we moved them to the statusline
