@@ -295,8 +295,7 @@ return {
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {},
-        lualine_z = {
+        lualine_y = {
           {
             "filename",
             path = 1,  -- Show relative path
@@ -304,7 +303,8 @@ return {
             gui = "bold",
             color = { fg = "#cdd6f4" },  -- Catppuccin Mocha text (white)
           }
-        }
+        },
+        lualine_z = {}
       }
     end,
   },
