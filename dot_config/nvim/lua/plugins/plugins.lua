@@ -268,7 +268,6 @@ return {
               local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.:h")
               return path == "." and "" or path
             end,
-            color = { fg = "#a6adc8" }, -- Catppuccin Mocha subtext0 (brighter gray)
             gui = "bold",
           },
         },
@@ -283,8 +282,8 @@ return {
         },
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {},
-        lualine_z = { 'branch' }, -- Move branch here
+        lualine_y = { "branch" }, -- Move branch here
+        lualine_z = {},
       }
       -- Remove the winbar settings since we moved them to the statusline
       opts.winbar = nil
