@@ -258,16 +258,6 @@ return {
     end,
   },
 
-  -- Which Key
-  {
-    "folke/which-key.nvim",
-    opts = {
-      defaults = {
-        ["<leader>db"] = { name = " +dbt", icon = "󰆼" }, -- Database icon with dbt subgroup
-      },
-    },
-  },
-
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
