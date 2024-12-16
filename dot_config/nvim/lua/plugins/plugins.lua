@@ -258,6 +258,16 @@ return {
     end,
   },
 
+  -- Which-key
+  {
+    "folke/which-key.nvim",
+    opts = {
+      defaults = {
+        ["<leader>d"] = nil, -- This removes the debug/diagnostics mappings
+      },
+    },
+  },
+
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
