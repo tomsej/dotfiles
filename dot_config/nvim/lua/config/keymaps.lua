@@ -23,9 +23,15 @@ local function copy_to_clipboard(expression, description)
   print("Copied " .. description .. " to clipboard: " .. value)
 end
 
-vim.keymap.set("n", "<leader>fp", function() copy_to_clipboard("%:p", "file path") end, { desc = "Copy file path to clipboard" })
-vim.keymap.set("n", "<leader>fd", function() copy_to_clipboard("%:p:h", "file directory") end, { desc = "Copy file directory to clipboard" })
-vim.keymap.set("n", "<leader>fn", function() copy_to_clipboard("%:t", "file name") end, { desc = "Copy file name to clipboard" })
+vim.keymap.set("n", "<leader>fpp", function()
+  copy_to_clipboard("%:p", "file path")
+end, { desc = "File path to clipboard" })
+vim.keymap.set("n", "<leader>fpd", function()
+  copy_to_clipboard("%:p:h", "file directory")
+end, { desc = "File directory to clipboard" })
+vim.keymap.set("n", "<leader>fdn", function()
+  copy_to_clipboard("%:t", "file name")
+end, { desc = "File name to clipboard" })
 
 -- dbt
 local function get_file_name_without_suffix()
@@ -33,19 +39,26 @@ local function get_file_name_without_suffix()
   return file_name
 end
 
-local function dbt_build_current_file(cmd_type)
+local function dbt(cmd_type, copy)
   local file_name = get_file_name_without_suffix()
   local command = "dbt " .. cmd_type .. " -s " .. file_name
-    if cmd_type == "build" then
-        vim.fn.setreg("+", command)
-        print("Copied dbt build command to clipboard: " .. command)
-    else
-        Snacks.terminal.open(command, { win = { position = "right", width = 0.25 }, interactive = false })
-    end
+  if copy == true then
+    vim.fn.setreg("+", command)
+    print("Copied dbt command to clipboard: " .. command)
+  else
+    Snacks.terminal.open(command, { win = { position = "right", width = 0.25 }, interactive = false })
+  end
 end
 
-vim.keymap.set("n", "<leader>dbbc", function() dbt_build_current_file("build") end, { desc = "Copy dbt build" })
-vim.keymap.set("n", "<leader>dbbr", function() dbt_build_current_file("build") end, { desc = "Run dbt build" })
-vim.keymap.set("n", "<leader>dbc", function() dbt_build_current_file("compile") end, { desc = "dbt compile current file and run in snacks" })
-vim.keymap.set("n", "<leader>dbb", function() dbt_build_current_file("build") end, { desc = "dbt build current file and run in snacks" })
-vim.keymap.set("n", "<leader>dbr", function() dbt_build_current_file("retry") end, { desc = "dbt retry current file and run in snacks" })
+vim.keymap.set("n", "<leader>dbp", function()
+  dbt("build", true)
+end, { desc = "Copy dbt build" })
+vim.keymap.set("n", "<leader>dbb", function()
+  dbt("build", false)
+end, { desc = "Run dbt build" })
+vim.keymap.set("n", "<leader>dbc", function()
+  dbt("compile", false)
+end, { desc = "Run dbt compile" })
+vim.keymap.set("n", "<leader>dbr", function()
+  dbt("retry", false)
+end, { desc = "Run dbt retry" })
