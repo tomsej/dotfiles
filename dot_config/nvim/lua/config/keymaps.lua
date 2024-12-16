@@ -2,9 +2,9 @@
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
 -- delete without yanking
-vim.api.nvim_set_keymap("n", "d", '"dd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "dd", '"ddd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "D", '"dD', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "dd", '"_dd', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "D", '"_D', { noremap = true, silent = true })
 
 vim.keymap.set("n", "c", '"cc', { desc = "Change without yanking", noremap = true, silent = true })
 vim.keymap.set("n", "C", '"cC', { desc = "Change to end without yanking", noremap = true, silent = true })
