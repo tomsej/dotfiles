@@ -330,13 +330,6 @@ return {
         },
         lualine_x = {
           {
-            function()
-              return #vim.fn.getbufinfo({ buflisted = 1 })
-            end,
-            icon = "󰈙",
-            color = { fg = colors.blue },
-          },
-          {
             "diagnostics",
             sources = { "nvim_diagnostic" },
             symbols = {
@@ -350,7 +343,7 @@ return {
               warn = { fg = colors.yellow },
               info = { fg = colors.blue },
             },
-            padding = { right = 2 },
+            padding = { right = 1 },
           },
           {
             function()
@@ -370,7 +363,13 @@ return {
             color = { fg = colors.white },
           },
         },
-        lualine_z = {},
+        lualine_z = {
+          {
+            function()
+              return #vim.fn.getbufinfo({ buflisted = 1 })
+            end,
+          },
+        },
       }
       opts.winbar = nil
     end,
