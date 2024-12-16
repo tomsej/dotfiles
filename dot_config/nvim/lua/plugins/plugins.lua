@@ -326,6 +326,16 @@ return {
         },
         lualine_c = {
           {
+            "tabs",
+            mode = 1,
+            max_length = vim.o.columns / 3,
+            icons_enabled = true,
+            icon = {
+              enabled = true,
+              filetype = true,
+            },
+          },
+          {
             "diff",
             symbols = {
               added = " ",
