@@ -43,4 +43,4 @@ local function copy_file_name_to_clipboard()
   print("Copied file name to clipboard: " .. file_name)
 end
 
-vim.keymap.set("n", "<leader>fn", copy_file_name_to_clipboard, { desc = "Copy file name to clipboard" })
+vim.keymap.set("n", "<leader>fú", copy_file_name_to_clipboard, { desc = "Copy file name to clipboard" })
