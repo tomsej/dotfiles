@@ -21,3 +21,6 @@ local function copy_file_path_to_clipboard()
 end
 
 vim.keymap.set("n", "<leader>fp", copy_file_path_to_clipboard, { desc = "Copy file path to clipboard" })
+
+vim.keymap.set("n", "<S-C-Up>", "<cmd>t.<cr>", { desc = "Duplicate line up" })
+vim.keymap.set("n", "<S-C-Down>", "<cmd>t.+1<cr>", { desc = "Duplicate line down" })
