@@ -275,39 +275,7 @@ return {
       opts.options = opts.options or {}
       opts.options.component_separators = { left = "", right = "" }
       opts.sections = {
-        lualine_a = {
-          {
-            function()
-              local mode_map = {
-                n = "NORMAL",
-                no = "NORMAL (Op)",
-                nov = "NORMAL (V)",
-                niI = "NORMAL (I)",
-                niR = "NORMAL (R)",
-                niV = "NORMAL (V)",
-                nt = "NORMAL (T)",
-                v = "VISUAL",
-                V = "V-LINE",
-                s = "SELECT",
-                S = "S-LINE",
-                i = "INSERT",
-                ic = "INSERT (C)",
-                ix = "INSERT (X)",
-                R = "REPLACE",
-                Rv = "V-REPLACE",
-                c = "COMMAND",
-                cv = "V-COMMAND",
-                ce = "EX",
-                r = "PROMPT",
-                rm = "MORE",
-                rM = "MORE",
-                ["!"] = "SHELL",
-                t = "TERMINAL",
-              }
-              return mode_map[vim.fn.mode()] or "UNKNOWN"
-            end,
-          },
-        },
+        lualine_a = { "mode" },
         lualine_b = {
           {
             "branch",
