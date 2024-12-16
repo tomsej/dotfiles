@@ -17,29 +17,15 @@ vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
 vim.keymap.set("n", "ú", "/", { desc = "Search" })
 
 -- Functions
-local function copy_file_path_to_clipboard()
-  local file_path = vim.fn.expand("%:p")
-  vim.fn.setreg("+", file_path)
-  print("Copied file path to clipboard: " .. file_path)
+local function copy_to_clipboard(expression, description)
+  local value = vim.fn.expand(expression)
+  vim.fn.setreg("+", value)
+  print("Copied " .. description .. " to clipboard: " .. value)
 end
 
-vim.keymap.set("n", "<leader>fp", copy_file_path_to_clipboard, { desc = "Copy file path to clipboard" })
-
-local function copy_file_dir_to_clipboard()
-  local file_dir = vim.fn.expand("%:p:h")
-  vim.fn.setreg("+", file_dir)
-  print("Copied file directory to clipboard: " .. file_dir)
-end
-
-vim.keymap.set("n", "<leader>fd", copy_file_dir_to_clipboard, { desc = "Copy file directory to clipboard" })
-
-local function copy_file_name_to_clipboard()
-  local file_name = vim.fn.expand("%:t")
-  vim.fn.setreg("+", file_name)
-  print("Copied file name to clipboard: " .. file_name)
-end
-
-vim.keymap.set("n", "<leader>fn", copy_file_name_to_clipboard, { desc = "Copy file name to clipboard" })
+vim.keymap.set("n", "<leader>fp", function() copy_to_clipboard("%:p", "file path") end, { desc = "Copy file path to clipboard" })
+vim.keymap.set("n", "<leader>fd", function() copy_to_clipboard("%:p:h", "file directory") end, { desc = "Copy file directory to clipboard" })
+vim.keymap.set("n", "<leader>fn", function() copy_to_clipboard("%:t", "file name") end, { desc = "Copy file name to clipboard" })
 
 -- dbt
 local function get_file_name_without_suffix()
