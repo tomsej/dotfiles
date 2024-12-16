@@ -26,12 +26,15 @@ end
 vim.keymap.set("n", "<leader>fpp", function()
   copy_to_clipboard("%:p", "file path")
 end, { desc = "File path to clipboard" })
-vim.keymap.set("n", "<leader>fpd", function()
+vim.keymap.set("n", "<leader>fd", function()
   copy_to_clipboard("%:p:h", "file directory")
 end, { desc = "File directory to clipboard" })
-vim.keymap.set("n", "<leader>fdn", function()
+vim.keymap.set("n", "<leader>fn", function()
   copy_to_clipboard("%:t", "file name")
 end, { desc = "File name to clipboard" })
+vim.keymap.set("n", "<leader>fr", function()
+  copy_to_clipboard("%:t:r", "file name without suffix")
+end, { desc = "Copy file name without suffix to clipboard" })
 
 -- dbt
 local function get_file_name_without_suffix()
