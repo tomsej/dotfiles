@@ -258,6 +258,17 @@ return {
     end,
   },
 
+  -- Which Key
+  {
+    "folke/which-key.nvim",
+    opts = function()
+      require("which-key").add({
+        { "<leader>db", group = "+dbt", icon = "󰆼" }, -- group
+        { "<leader>fp", group = "+copy filepath" }, -- group
+      })
+    end,
+  },
+
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
