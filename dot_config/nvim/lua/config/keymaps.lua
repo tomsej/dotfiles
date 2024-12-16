@@ -2,7 +2,7 @@
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
 -- delete without yanking
-vim.api.nvim_set_keymap("n", "e", '"dd', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "d", '"dd', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "dd", '"ddd', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "D", '"dD', { noremap = true, silent = true })
 
@@ -12,10 +12,6 @@ vim.keymap.set("n", "C", '"cC', { desc = "Change to end without yanking", norema
 -- home row goto end and start of line (same as in Helix editor) {{{
 vim.keymap.set({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
 vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
-
--- Buffer navigation
-vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<C-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 
 -- Search
 vim.keymap.set("n", "ú", "/", { desc = "Search" })
@@ -45,6 +41,7 @@ end
 
 vim.keymap.set("n", "<leader>fn", copy_file_name_to_clipboard, { desc = "Copy file name to clipboard" })
 
+-- dbt
 local function get_file_name_without_suffix()
   local file_name = vim.fn.expand("%:t:r")
   return file_name
@@ -53,7 +50,29 @@ end
 local function dbt_build_current_file()
   local file_name = get_file_name_without_suffix()
   local command = "dbt build -s " .. file_name
-  vim.cmd("term " .. command)
+  vim.fn.setreg("+", command)
+  print("Copied file name to clipboard: " .. command)
 end
 
-vim.keymap.set("n", "<leader>db", dbt_build_current_file, { desc = "dbt build current file" })
+vim.keymap.set("n", "<leader>dbbc", dbt_build_current_file, { desc = "Copy dbt build" })
+
+local function dbt_build_current_file_run()
+  local file_name = get_file_name_without_suffix()
+  local cmd = "dbt build -s " .. file_name
+  Snacks.terminal.open(cmd, { win = { position = "right", width = 0.25 }, interactive = false })
+end
+
+vim.keymap.set("n", "<leader>dbbr", dbt_build_current_file_run, { desc = "Run dbt build" })
+
+local function dbt_build_current_file_compile()
+  local file_name = get_file_name_without_suffix()
+  local cmd = "dbt compile -s " .. file_name
+  Snacks.terminal.open(cmd, { win = { position = "right", width = 0.25 }, interactive = false })
+end
+
+vim.keymap.set(
+  "n",
+  "<leader>dbc",
+  dbt_build_current_file_compile,
+  { desc = "dbt compile current file and run in snacks" }
+)
