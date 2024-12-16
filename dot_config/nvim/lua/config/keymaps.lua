@@ -20,4 +20,4 @@ local function copy_file_path_to_clipboard()
   print("Copied file path to clipboard: " .. file_path)
 end
 
-vim.keymap.set("n", "<leader>fc", copy_file_path_to_clipboard, { desc = "Copy file path to clipboard" })
+vim.keymap.set("n", "<leader>fp", copy_file_path_to_clipboard, { desc = "Copy file path to clipboard" })
