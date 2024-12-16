@@ -43,4 +43,17 @@ local function copy_file_name_to_clipboard()
   print("Copied file name to clipboard: " .. file_name)
 end
 
-vim.keymap.set("n", "<leader>fú", copy_file_name_to_clipboard, { desc = "Copy file name to clipboard" })
+vim.keymap.set("n", "<leader>fn", copy_file_name_to_clipboard, { desc = "Copy file name to clipboard" })
+
+local function get_file_name_without_suffix()
+  local file_name = vim.fn.expand("%:t:r")
+  return file_name
+end
+
+local function dbt_build_current_file()
+  local file_name = get_file_name_without_suffix()
+  local command = "dbt build -s " .. file_name
+  vim.cmd("term " .. command)
+end
+
+vim.keymap.set("n", "<leader>db", dbt_build_current_file, { desc = "dbt build current file" })
