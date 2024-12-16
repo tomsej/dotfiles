@@ -277,6 +277,13 @@ return {
       opts.sections = {
         lualine_a = {
           {
+            function()
+              return vim.fn.mode()
+            end,
+          },
+        },
+        lualine_b = {
+          {
             "branch",
           },
           {
@@ -312,7 +319,6 @@ return {
             end,
           },
         },
-        lualine_b = {},
         lualine_c = {
           {
             "diff",
