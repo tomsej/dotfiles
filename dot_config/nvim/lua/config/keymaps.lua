@@ -2,17 +2,23 @@
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
 -- delete without yanking
+vim.api.nvim_set_keymap("n", "e", '"dd', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "dd", '"ddd', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "D", '"dD', { noremap = true, silent = true })
+
 vim.keymap.set("n", "c", '"cc', { desc = "Change without yanking", noremap = true, silent = true })
 vim.keymap.set("n", "C", '"cC', { desc = "Change to end without yanking", noremap = true, silent = true })
 
---: home row goto end and start of line (same as in Helix editor) {{{
+-- home row goto end and start of line (same as in Helix editor) {{{
 vim.keymap.set({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
 vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
---: }}}
 
 -- Buffer navigation
-vim.keymap.set("n", "<C-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<C-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+
+-- Search
+vim.keymap.set("n", "ú", "/", { desc = "Search" })
 
 -- Functions
 local function copy_file_path_to_clipboard()
@@ -22,4 +28,3 @@ local function copy_file_path_to_clipboard()
 end
 
 vim.keymap.set("n", "<leader>fp", copy_file_path_to_clipboard, { desc = "Copy file path to clipboard" })
-vim.keymap.set("n", "ú", "/", { desc = "Search" })
