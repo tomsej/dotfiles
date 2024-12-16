@@ -387,4 +387,17 @@ return {
       })
     end,
   },
+  {
+    "echasnovski/mini.move",
+    config = function()
+      require("mini.move").setup({
+        mappings = {
+          left = "<C-Left>",
+          right = "<C-Right>",
+          down = "<C-Down>",
+          up = "<C-Up>",
+        },
+      })
+    end,
+  },
 }
