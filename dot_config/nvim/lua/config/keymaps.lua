@@ -47,32 +47,19 @@ local function get_file_name_without_suffix()
   return file_name
 end
 
-local function dbt_build_current_file()
+local function dbt_build_current_file(cmd_type)
   local file_name = get_file_name_without_suffix()
-  local command = "dbt build -s " .. file_name
-  vim.fn.setreg("+", command)
-  print("Copied file name to clipboard: " .. command)
+  local command = "dbt " .. cmd_type .. " -s " .. file_name
+    if cmd_type == "build" then
+        vim.fn.setreg("+", command)
+        print("Copied dbt build command to clipboard: " .. command)
+    else
+        Snacks.terminal.open(command, { win = { position = "right", width = 0.25 }, interactive = false })
+    end
 end
 
-vim.keymap.set("n", "<leader>dbbc", dbt_build_current_file, { desc = "Copy dbt build" })
-
-local function dbt_build_current_file_run()
-  local file_name = get_file_name_without_suffix()
-  local cmd = "dbt build -s " .. file_name
-  Snacks.terminal.open(cmd, { win = { position = "right", width = 0.25 }, interactive = false })
-end
-
-vim.keymap.set("n", "<leader>dbbr", dbt_build_current_file_run, { desc = "Run dbt build" })
-
-local function dbt_build_current_file_compile()
-  local file_name = get_file_name_without_suffix()
-  local cmd = "dbt compile -s " .. file_name
-  Snacks.terminal.open(cmd, { win = { position = "right", width = 0.25 }, interactive = false })
-end
-
-vim.keymap.set(
-  "n",
-  "<leader>dbc",
-  dbt_build_current_file_compile,
-  { desc = "dbt compile current file and run in snacks" }
-)
+vim.keymap.set("n", "<leader>dbbc", function() dbt_build_current_file("build") end, { desc = "Copy dbt build" })
+vim.keymap.set("n", "<leader>dbbr", function() dbt_build_current_file("build") end, { desc = "Run dbt build" })
+vim.keymap.set("n", "<leader>dbc", function() dbt_build_current_file("compile") end, { desc = "dbt compile current file and run in snacks" })
+vim.keymap.set("n", "<leader>dbb", function() dbt_build_current_file("build") end, { desc = "dbt build current file and run in snacks" })
+vim.keymap.set("n", "<leader>dbr", function() dbt_build_current_file("retry") end, { desc = "dbt retry current file and run in snacks" })
