@@ -258,16 +258,6 @@ return {
     end,
   },
 
-  -- Which-key
-  {
-    "folke/which-key.nvim",
-    opts = {
-      defaults = {
-        ["<leader>d"] = { name = "+dbt" }, -- This renames the group to +dbt
-      },
-    },
-  },
-
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
