@@ -263,7 +263,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       defaults = {
-        ["<leader>d"] = nil, -- This removes the debug/diagnostics mappings
+        ["<leader>d"] = { name = "+dbt" }, -- This renames the group to +dbt
       },
     },
   },
