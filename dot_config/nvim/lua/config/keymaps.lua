@@ -28,3 +28,11 @@ local function copy_file_path_to_clipboard()
 end
 
 vim.keymap.set("n", "<leader>fp", copy_file_path_to_clipboard, { desc = "Copy file path to clipboard" })
+
+local function copy_file_dir_to_clipboard()
+  local file_dir = vim.fn.expand("%:p:h")
+  vim.fn.setreg("+", file_dir)
+  print("Copied file directory to clipboard: " .. file_dir)
+end
+
+vim.keymap.set("n", "<leader>fd", copy_file_dir_to_clipboard, { desc = "Copy file directory to clipboard" })
