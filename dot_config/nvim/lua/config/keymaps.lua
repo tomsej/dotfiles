@@ -12,11 +12,18 @@ vim.keymap.set("n", "C", '"cC', { desc = "Change to end without yanking", norema
 -- home row goto end and start of line (same as in Helix editor) {{{
 vim.keymap.set({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
 vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
-
--- Search
+-- delete buffer
+vim.keymap.set("n", "<c-x>", function()
+  Snacks.bufdelete()
+end, { desc = "Delete buffer" })
+----------------- search
 vim.keymap.set("n", "ú", "/", { desc = "Search" })
+vim.keymap.set("n", "í", "{")
+vim.keymap.set("n", "é", "}")
+vim.keymap.set("n", "č", "$")
+vim.keymap.set("n", "ž", "^")
 
--- Functions
+----------------- path
 local function copy_to_clipboard(expression, description)
   local value = vim.fn.expand(expression)
   vim.fn.setreg("+", value)
@@ -25,18 +32,18 @@ end
 
 vim.keymap.set("n", "<leader>fpp", function()
   copy_to_clipboard("%:p", "file path")
-end, { desc = "File path to clipboard" })
-vim.keymap.set("n", "<leader>fd", function()
+end, { desc = "Path" })
+vim.keymap.set("n", "<leader>fpd", function()
   copy_to_clipboard("%:p:h", "file directory")
-end, { desc = "File directory to clipboard" })
-vim.keymap.set("n", "<leader>fn", function()
+end, { desc = "Directory" })
+vim.keymap.set("n", "<leader>fpn", function()
   copy_to_clipboard("%:t", "file name")
-end, { desc = "File name to clipboard" })
-vim.keymap.set("n", "<leader>fr", function()
+end, { desc = "Name" })
+vim.keymap.set("n", "<leader>fps", function()
   copy_to_clipboard("%:t:r", "file name without suffix")
-end, { desc = "Copy file name without suffix to clipboard" })
+end, { desc = "Name (without suffix)" })
 
--- dbt
+----------------- dbt
 local function get_file_name_without_suffix()
   local file_name = vim.fn.expand("%:t:r")
   return file_name

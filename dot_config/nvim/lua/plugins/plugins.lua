@@ -7,7 +7,7 @@ return {
     opts = {
       keymap = {
         preset = "super-tab",
-        ["<Tab>"] = { "select_and_accept" },
+        ["<CR>"] = { "select_and_accept" },
         ["<C-j>"] = { "select_next" },
         ["<C-k>"] = { "select_prev" },
       },
@@ -19,7 +19,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    opts = { transparent_background = true },
+    -- opts = { transparent_background = true },
   },
   {
     "LazyVim/LazyVim",
@@ -257,7 +257,23 @@ return {
       })
     end,
   },
-
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = true,
+    version = false, -- set this if you want to always pull the latest change
+    opts = {
+      -- add any opts here
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    -- build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+  },
   -- Which Key
   {
     "folke/which-key.nvim",
@@ -268,7 +284,6 @@ return {
       })
     end,
   },
-
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
@@ -285,6 +300,8 @@ return {
       opts.theme = "catppuccin"
       opts.options = opts.options or {}
       opts.options.component_separators = { left = "", right = "" }
+      opts.options.always_divide_middle = false
+      opts.options.always_show_tabline = false
       opts.sections = {
         lualine_a = { "mode" },
         lualine_b = {
@@ -326,26 +343,13 @@ return {
         },
         lualine_c = {
           {
-            "tabs",
-            mode = 1,
-            max_length = vim.o.columns / 3,
-            icons_enabled = true,
-            icon = {
-              enabled = true,
-              filetype = true,
-            },
-          },
-          {
-            "diff",
+            "buffers",
+            icons_enabled = false,
+            modified_status = false,
             symbols = {
-              added = " ",
-              modified = "󰝤 ",
-              removed = " ",
-            },
-            diff_color = {
-              added = { fg = colors.green },
-              modified = { fg = colors.yellow },
-              removed = { fg = colors.red },
+              modified = "", -- Text to show when the buffer is modified
+              alternate_file = "", -- Text to show to identify the alternate file
+              directory = "", -- Text to show when the buffer is a directory
             },
           },
         },
