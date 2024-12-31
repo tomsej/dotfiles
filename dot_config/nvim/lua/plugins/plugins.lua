@@ -7,19 +7,50 @@ return {
     opts = {
       keymap = {
         preset = "super-tab",
-        ["<CR>"] = { "select_and_accept" },
+        ["<CR>"] = { "select_and_accept", "fallback" },
+        ["<Tab>"] = { "select_and_accept", "fallback" },
         ["<C-j>"] = { "select_next" },
         ["<C-k>"] = { "select_prev" },
       },
     },
   },
-
+  -- Track and reuse file system visits
+  {
+    "echasnovski/mini.visits",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>m",
+        function()
+          require("mini.visits").select_path()
+        end,
+        desc = "Visited Path (cwd)",
+      },
+    },
+  },
+  {
+    "arnamak/stay-centered.nvim",
+    opts = function()
+      require("stay-centered").setup({
+        -- Add any configurations here, like skip_filetypes if needed
+        -- skip_filetypes = {"lua", "typescript"},
+      })
+      -- Define the keymap to toggle the stay-centered plugin
+      -- I had to move this keymap here inside, otherwise the plugin started
+      -- disabled if I set the keymap outside under "keys"
+      vim.keymap.set("n", "<leader>ue", function()
+        require("stay-centered").toggle()
+        vim.notify("Toggled stay-centered", vim.log.levels.INFO)
+      end, { desc = "[P]Toggle stay-centered.nvim" })
+    end,
+  },
   -- Colorscheme
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    -- opts = { transparent_background = true },
+    opts = { transparent_background = true },
   },
   {
     "LazyVim/LazyVim",
@@ -27,8 +58,35 @@ return {
       colorscheme = "catppuccin",
     },
   },
-
   -- Editor
+  {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+  {
+    "otavioschwanck/arrow.nvim",
+    event = "VeryLazy",
+    opts = {
+      show_icons = true,
+      leader_key = "ů",
+      index_keys = "asdfghjkl",
+      separate_save_and_remove = true,
+      mappings = {
+        edit = "E",
+        delete_mode = "D",
+        clear_all_items = "C",
+        toggle = "A", -- used as save if separate_save_and_remove is true
+        open_vertical = "V",
+        open_horizontal = "H",
+        quit = "q",
+        remove = "X", -- only used if separate_save_and_remove is true
+        next_item = "]",
+        prev_item = "[",
+      },
+    },
+  },
   {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
@@ -36,7 +94,7 @@ return {
       {
         "<leader>e",
         "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current file",
+        desc = "Open yazi at the current fils",
       },
       {
         "<leader>E",
@@ -118,7 +176,6 @@ return {
       }
     end,
   },
-
   -- TreeSitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -140,6 +197,7 @@ return {
   {
     "rmagatti/auto-session",
     lazy = false,
+    enabled = false,
     opts = {
       suppressed_dirs = { "~/Downloads", "/" },
       bypass_session_save_cmds = { "tabnew", "foldmethod" },
@@ -158,6 +216,17 @@ return {
       indent = { enabled = false },
       quickfile = { enabled = true },
       dim = { enabled = true },
+      scratch = { enabled = false },
+      zen = {
+        enabled = true,
+        width = 250,
+        toggles = {
+          inlay_hints = true,
+          dim = false,
+          diagnostics = true,
+        },
+        show = { statusline = true },
+      },
       lazygit = {
         enabled = true,
         configure = true,
@@ -183,6 +252,9 @@ return {
         lazygit = {
           width = 0,
           height = 0,
+        },
+        zen = {
+          width = 180,
         },
       },
     },
@@ -257,23 +329,6 @@ return {
       })
     end,
   },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    version = false, -- set this if you want to always pull the latest change
-    opts = {
-      -- add any opts here
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-  },
   -- Which Key
   {
     "folke/which-key.nvim",
@@ -295,6 +350,11 @@ return {
         green = "#a6e3a1", -- Catppuccin Mocha green
         gray = "#6c7086", -- Catppuccin Mocha gray
         white = "#cdd6f4", -- Catppuccin Mocha white
+      }
+      local arrow = {
+        function()
+          return require("arrow.statusline").text_for_statusline_with_icons()
+        end,
       }
 
       opts.theme = "catppuccin"
@@ -342,6 +402,7 @@ return {
           },
         },
         lualine_c = {
+          arrow,
           {
             "buffers",
             icons_enabled = false,
@@ -400,6 +461,38 @@ return {
     end,
   },
 
+  {
+    "ibhagwan/fzf-lua",
+    opts = {
+      defaults = {
+        no_header = true,
+        no_header_i = true,
+        file_icons = false,
+      },
+      files = {
+        formatter = "path.filename_first",
+        actions = { ["ctrl-q"] = { fn = require("fzf-lua").actions.file_sel_to_qf, prefix = "select-all" } },
+      },
+      previewers = {
+        bat = {
+          cmd = "bat",
+        },
+      },
+      buffers = {
+        formatter = "path.filename_first",
+      },
+      winopts = {
+        width = 0.85,
+        height = 0.85,
+        -- fullscreen = false,
+        preview = {
+          border = "noborder",
+          default = "bat", -- faster, no delay required
+          -- scrollchars = { "┃", "" },
+        },
+      },
+    },
+  },
   -- Mason
   {
     "williamboman/mason.nvim",

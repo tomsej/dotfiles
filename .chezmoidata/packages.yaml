@@ -58,5 +58,7 @@ packages:
             - "logseq" # A privacy-first platform for knowledge sharing and management
             - "notunes" # A macOS app for disabling itunes
             - "heynote"
+            - "ghostty"
             - "cursor" # An AI editor
+            - "reminders-menubar"
         mas:

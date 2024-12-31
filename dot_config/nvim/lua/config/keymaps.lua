@@ -1,10 +1,18 @@
 -- redo
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
+vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+vim.keymap.set("i", "jk", "<ESC>", { silent = true })
+vim.keymap.set("i", "kk", "<ESC>", { silent = true })
+
+vim.keymap.set("n", "<leader>r", function()
+  require("persistence").select()
+end, { desc = "Load session" })
+
 -- delete without yanking
-vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "dd", '"_dd', { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "D", '"_D', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "d", '"dd', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "dd", '"ddd', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "D", '"dD', { noremap = true, silent = true })
 
 vim.keymap.set("n", "c", '"cc', { desc = "Change without yanking", noremap = true, silent = true })
 vim.keymap.set("n", "C", '"cC', { desc = "Change to end without yanking", noremap = true, silent = true })
@@ -17,7 +25,12 @@ vim.keymap.set("n", "<c-x>", function()
   Snacks.bufdelete()
 end, { desc = "Delete buffer" })
 ----------------- search
-vim.keymap.set("n", "ú", "/", { desc = "Search" })
+vim.keymap.set(
+  "n",
+  "ú",
+  "<cmd>FzfLua grep_curbuf<cr>",
+  { noremap = true, silent = true, desc = "Search current buffer" }
+)
 vim.keymap.set("n", "í", "{")
 vim.keymap.set("n", "é", "}")
 vim.keymap.set("n", "č", "$")
