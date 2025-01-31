@@ -23,3 +23,4 @@ window-save-state = always
 
 # Keybinds
 keybind = global:cmd+§=toggle_quick_terminal
+keybind = performable:cmd+c=copy_to_clipboard

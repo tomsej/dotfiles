@@ -55,7 +55,7 @@ if type brew &>/dev/null; then
   source ~/.zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
   # source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
   source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  # source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+  source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
   source <(fzf --zsh)
   
 fi
@@ -104,15 +104,25 @@ alias viff="fzf --preview 'bat --color=always {}' | xargs nvim"  # Find files an
 
 alias venva="source .venv/bin/activate" # activate venvs
 alias ls="eza --long --group-directories-first --icons"  # Use eza for ls
-alias mr="mise run --"  # Alias for mise run
+alias mr="mise run"  # Alias for mise run
 alias ".."="cd .."  # Go up one directory
 alias "..."="cd ../.."  # Go up two directories
 alias "...."="cd ../../.."  # Go up three directories
 alias work="cd ~/Workspace"  # Go to Workspace directory
 alias cm="chezmoi"  # Alias for chezmoi
 alias cat="bat"  # Use bat instead of cat
-alias reload="cm re-add ~/.config/nvim/lazy-lock.json && cm apply && source ~/.zshrc"
+alias reload="cm re-add ~/.config/nvim/lazy-lock.json && cm status && cm apply && source ~/.zshrc"
 alias brewup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew autoremove"
+alias present="presenterm presentation.md"
+alias tf="terraform"
+alias tfi="terraform init"
+alias tfc="terraform validate"
+alias tfa="terraform apply"
+alias tfaa="terraform apply -auto-approve"
+alias tfd="terraform destroy"
+alias tfdd="terraform destroy -auto-approve"
+alias tfv="terraform validate"
+alias tff="terraform fmt"
 
 # ==========================
 # Environment Variables
@@ -196,5 +206,5 @@ function aid() {
     esac
 
     # Run the command with the selected model
-    aider --model "$model" --editor nvim --architect --cache-prompts --no-stream --user-input-color "#a6d189" --tool-error-color "#e78284" --tool-warning-color "#e5c890" --assistant-output-color "#b4befe" --code-theme monokai
+    aider --model "$model" --editor nvim --chat-mode ask --cache-prompts --no-stream --user-input-color "#a6d189" --tool-error-color "#e78284" --tool-warning-color "#e5c890" --assistant-output-color "#b4befe" --code-theme monokai
 }

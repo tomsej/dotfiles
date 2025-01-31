@@ -14,21 +14,6 @@ return {
       },
     },
   },
-  -- Track and reuse file system visits
-  {
-    "echasnovski/mini.visits",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      {
-        "<leader>m",
-        function()
-          require("mini.visits").select_path()
-        end,
-        desc = "Visited Path (cwd)",
-      },
-    },
-  },
   {
     "arnamak/stay-centered.nvim",
     opts = function()
@@ -65,55 +50,33 @@ return {
       require("better_escape").setup()
     end,
   },
-  {
-    "otavioschwanck/arrow.nvim",
-    event = "VeryLazy",
-    opts = {
-      show_icons = true,
-      leader_key = "ů",
-      index_keys = "asdfghjkl",
-      separate_save_and_remove = true,
-      mappings = {
-        edit = "E",
-        delete_mode = "D",
-        clear_all_items = "C",
-        toggle = "A", -- used as save if separate_save_and_remove is true
-        open_vertical = "V",
-        open_horizontal = "H",
-        quit = "q",
-        remove = "X", -- only used if separate_save_and_remove is true
-        next_item = "]",
-        prev_item = "[",
-      },
-    },
-  },
-  {
-    "mikavilpas/yazi.nvim",
-    event = "VeryLazy",
-    keys = {
-      {
-        "<leader>e",
-        "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current fils",
-      },
-      {
-        "<leader>E",
-        "<cmd>Yazi cwd<cr>",
-        desc = "Open the file manager in nvim's working directory",
-      },
-      {
-        "<c-up>",
-        "<cmd>Yazi toggle<cr>",
-        desc = "Resume the last yazi session",
-      },
-    },
-    opts = {
-      open_for_directories = false,
-      keymaps = {
-        show_help = "<f1>",
-      },
-    },
-  },
+  -- {
+  --   "mikavilpas/yazi.nvim",
+  --   event = "VeryLazy",
+  --   keys = {
+  --     {
+  --       "<leader>e",
+  --       "<cmd>Yazi<cr>",
+  --       desc = "Open yazi at the current fils",
+  --     },
+  --     {
+  --       "<leader>E",
+  --       "<cmd>Yazi cwd<cr>",
+  --       desc = "Open the file manager in nvim's working directory",
+  --     },
+  --     {
+  --       "<c-up>",
+  --       "<cmd>Yazi toggle<cr>",
+  --       desc = "Resume the last yazi session",
+  --     },
+  --   },
+  --   opts = {
+  --     open_for_directories = false,
+  --     keymaps = {
+  --       show_help = "<f1>",
+  --     },
+  --   },
+  -- },
 
   -- Formatting
   {
@@ -213,6 +176,7 @@ return {
         enabled = true,
         style = "fancy",
       },
+      picker = {},
       indent = { enabled = false },
       quickfile = { enabled = true },
       dim = { enabled = true },
@@ -267,6 +231,13 @@ return {
         desc = "Dismiss All Notifications",
       },
       {
+        "<leader>a",
+        function()
+          Snacks.picker.explorer({ layout = "default" })
+        end,
+        desc = "Explorer",
+      },
+      {
         "<leader>bx",
         function()
           Snacks.bufdelete()
@@ -293,6 +264,28 @@ return {
           Snacks.git.blame_line()
         end,
         desc = "Git Blame Line",
+      },
+      {
+        "<leader><space>",
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = "Find Files",
+      },
+      {
+        "ú",
+        function()
+          Snacks.picker.lines({ layout = "default" })
+        end,
+        desc = "Find Files",
+      },
+
+      {
+        "<c-p>",
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = "Projects",
       },
       {
         "<c-t>",
@@ -461,38 +454,6 @@ return {
     end,
   },
 
-  {
-    "ibhagwan/fzf-lua",
-    opts = {
-      defaults = {
-        no_header = true,
-        no_header_i = true,
-        file_icons = false,
-      },
-      files = {
-        formatter = "path.filename_first",
-        actions = { ["ctrl-q"] = { fn = require("fzf-lua").actions.file_sel_to_qf, prefix = "select-all" } },
-      },
-      previewers = {
-        bat = {
-          cmd = "bat",
-        },
-      },
-      buffers = {
-        formatter = "path.filename_first",
-      },
-      winopts = {
-        width = 0.85,
-        height = 0.85,
-        -- fullscreen = false,
-        preview = {
-          border = "noborder",
-          default = "bat", -- faster, no delay required
-          -- scrollchars = { "┃", "" },
-        },
-      },
-    },
-  },
   -- Mason
   {
     "williamboman/mason.nvim",

@@ -98,8 +98,8 @@ outer.right = 2
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-ctrl-alt-slash = 'layout tiles horizontal vertical'
-# alt-comma = 'layout accordion horizontal vertical'
+ctrl-alt-period = 'layout tiles horizontal'
+ctrl-alt-comma = 'layout accordion horizontal'
 ctrl-alt-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
@@ -180,6 +180,10 @@ if.app-id = 'com.apple.reminders'
 run = ["move-node-to-workspace M"]
 
 [[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = ["move-node-to-workspace M"]
+
+[[on-window-detected]]
 if.app-id = 'com.apple.Safari'
 run = "move-node-to-workspace O"
 
@@ -236,6 +240,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'co.podzim.BoltGPT'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.oecoway.friendlynetflix'
 run = 'layout floating'
 
 # [[on-window-detected]]

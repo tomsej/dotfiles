@@ -2,6 +2,7 @@ packages:
     universal:
         taps:
             - "rsteube/homebrew-tap"
+            - "common-fate/granted"
         brews:
             - "atuin" # Shell history management
             - "awscli" # Official Amazon AWS command-line interface
@@ -36,6 +37,7 @@ packages:
             - "lazygit" # Simple terminal UI for git commands
             - "git-delta" # A syntax-highlighter for git and diff output
             - "aider" # A command-line tool for AI
+            - "presenterm"
         casks:
             - "aerospace" # Aerospace is not a known cask, might be a custom or private cask.
             - "appcleaner" # Utility to uninstall applications and clean up related files.

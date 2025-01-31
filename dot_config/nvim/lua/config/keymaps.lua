@@ -4,6 +4,7 @@ vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 vim.keymap.set("i", "jk", "<ESC>", { silent = true })
 vim.keymap.set("i", "kk", "<ESC>", { silent = true })
+vim.keymap.set("i", "hh", "<ESC>", { silent = true })
 
 vim.keymap.set("n", "<leader>r", function()
   require("persistence").select()
@@ -24,13 +25,7 @@ vim.keymap.set({ "n", "v", "o" }, "gl", "$", { desc = "Go to end of line" })
 vim.keymap.set("n", "<c-x>", function()
   Snacks.bufdelete()
 end, { desc = "Delete buffer" })
------------------ search
-vim.keymap.set(
-  "n",
-  "ú",
-  "<cmd>FzfLua grep_curbuf<cr>",
-  { noremap = true, silent = true, desc = "Search current buffer" }
-)
+----------------- From czech keyboard to EN
 vim.keymap.set("n", "í", "{")
 vim.keymap.set("n", "é", "}")
 vim.keymap.set("n", "č", "$")
