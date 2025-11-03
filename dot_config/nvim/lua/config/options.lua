@@ -6,3 +6,7 @@ vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 vim.opt.relativenumber = false
 vim.g.snacks_animate = false
+
+vim.api.nvim_set_hl(0, "FlashMatch", { bg = "#17131F", fg = "#8EDD95", bold = false })
+vim.api.nvim_set_hl(0, "FlashLabel", { bg = "#17131F", fg = "#FF84A8", bold = true })
+vim.api.nvim_set_hl(0, "FlashCurrent", { bg = "#17131F", fg = "#8EDD95", bold = false })

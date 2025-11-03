@@ -51,32 +51,32 @@ vim.keymap.set("n", "<leader>fps", function()
   copy_to_clipboard("%:t:r", "file name without suffix")
 end, { desc = "Name (without suffix)" })
 
------------------ dbt
-local function get_file_name_without_suffix()
-  local file_name = vim.fn.expand("%:t:r")
-  return file_name
-end
-
-local function dbt(cmd_type, copy)
-  local file_name = get_file_name_without_suffix()
-  local command = "dbt " .. cmd_type .. " -s " .. file_name
-  if copy == true then
-    vim.fn.setreg("+", command)
-    print("Copied dbt command to clipboard: " .. command)
-  else
-    Snacks.terminal.open(command, { win = { position = "right", width = 0.25 }, interactive = false })
-  end
-end
-
-vim.keymap.set("n", "<leader>dbp", function()
-  dbt("build", true)
-end, { desc = "Copy dbt build" })
-vim.keymap.set("n", "<leader>dbb", function()
-  dbt("build", false)
-end, { desc = "Run dbt build" })
-vim.keymap.set("n", "<leader>dbc", function()
-  dbt("compile", false)
-end, { desc = "Run dbt compile" })
-vim.keymap.set("n", "<leader>dbr", function()
-  dbt("retry", false)
-end, { desc = "Run dbt retry" })
+-------------------- dbt
+---local function get_file_name_without_suffix()
+---  local file_name = vim.fn.expand("%:t:r")
+---  return file_name
+---end
+---
+---local function dbt(cmd_type, copy)
+---  local file_name = get_file_name_without_suffix()
+---  local command = "dbt " .. cmd_type .. " -s " .. file_name
+---  if copy == true then
+---    vim.fn.setreg("+", command)
+---    print("Copied dbt command to clipboard: " .. command)
+---  else
+---    Snacks.terminal.open(command, { win = { position = "right", width = 0.25 }, interactive = false })
+---  end
+---end
+---
+---vim.keymap.set("n", "<leader>dbp", function()
+---  dbt("build", true)
+---end, { desc = "Copy dbt build" })
+---vim.keymap.set("n", "<leader>dbb", function()
+---  dbt("build", false)
+---end, { desc = "Run dbt build" })
+---vim.keymap.set("n", "<leader>dbc", function()
+---  dbt("compile", false)
+---end, { desc = "Run dbt compile" })
+---vim.keymap.set("n", "<leader>dbr", function()
+---  dbt("retry", false)
+---end, { desc = "Run dbt retry" })

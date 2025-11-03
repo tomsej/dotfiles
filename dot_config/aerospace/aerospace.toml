@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0xFF220974 inactive_color=0xff0F0F0F width=4.0',
+  'exec-and-forget borders active_color=0xFF220974 inactive_color=0xff0F0F0F width=4.0 blacklist="Todoist"',
 ]
 
 # Start AeroSpace at login
@@ -125,19 +125,18 @@ ctrl-alt-1 = 'workspace 1'
 ctrl-alt-o = 'workspace O'
 ctrl-alt-i = 'workspace I'
 ctrl-alt-u = 'workspace U'
-ctrl-alt-a = 'workspace A'
+ctrl-alt-v = 'workspace V'
 ctrl-alt-p = 'workspace P'
 ctrl-alt-b = 'workspace B'
 ctrl-alt-n = 'workspace N'
 ctrl-alt-m = 'workspace M'
 ctrl-alt-s = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.heynote.app Heynote"
-ctrl-alt-d = "exec-and-forget ~/.config/aerospace/skratchpad.sh com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A JIRA"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-o = 'move-node-to-workspace O'
 alt-shift-i = 'move-node-to-workspace I'
-alt-shift-a = 'move-node-to-workspace A'
+alt-shift-v = 'move-node-to-workspace V'
 alt-shift-u = 'move-node-to-workspace U'
 alt-shift-p = 'move-node-to-workspace P'
 alt-shift-b = 'move-node-to-workspace B'
@@ -176,11 +175,7 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ["move-node-to-workspace U"]
 
 [[on-window-detected]]
-if.app-id = 'com.apple.reminders'
-run = ["move-node-to-workspace M"]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
+if.app-id = 'com.openai.chat'
 run = ["move-node-to-workspace M"]
 
 [[on-window-detected]]
@@ -188,15 +183,19 @@ if.app-id = 'com.apple.Safari'
 run = "move-node-to-workspace O"
 
 [[on-window-detected]]
+if.app-id = 'com.openai.atlas'
+run = "move-node-to-workspace O"
+
+[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace B"
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.com.zen.browser'
+if.app-id = 'app.zen-browser.zen'
 run = "move-node-to-workspace I"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Notes'
+if.app-id = 'com.todoist.mac.Todoist'
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]
@@ -204,28 +203,21 @@ if.app-id = "notion.id"
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]
-if.app-id = 'org.jkiss.dbeaver.core.product'
+if.app-id = 'com.microsoft.VSCode'
 run = "move-node-to-workspace P"
 
-# AWS
 [[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.2F388D89-3833-4408-B814-80B0D4DD09FE'
-run = "move-node-to-workspace A"
+if.app-id = 'com.apple.podcasts'
+run = "move-node-to-workspace V"
 
-# QuickSight
 [[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.C81C261C-F1E9-4443-8625-3365A5817CE9'
-run = "move-node-to-workspace A"
+if.app-id = 'com.oecoway.friendlynetflix'
+run = "move-node-to-workspace V"
 
 # Enable floating for certain apps
 # Passwords
 [[on-window-detected]]
 if.app-id = 'com.apple.Passwords'
-run = 'layout floating'
-
-# JIRA
-[[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.7E516CD9-CC4D-4B78-8094-83C3496FF47A'
 run = 'layout floating'
 
 # Finder
@@ -237,15 +229,3 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.heynote.app'
 run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'co.podzim.BoltGPT'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'com.oecoway.friendlynetflix'
-run = 'layout floating'
-
-# [[on-window-detected]]
-# if.app-id = 'com.mitchellh.ghostty'
-# run = 'layout floating'

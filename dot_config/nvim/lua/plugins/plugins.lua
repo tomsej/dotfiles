@@ -35,7 +35,17 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    opts = { transparent_background = true },
+    opts = {
+      transparent_background = true,
+      highlight_overrides = {
+        all = function()
+          return {
+            NormalFloat = { fg = "none", bg = "none" },
+            FlashLabel = { bg = "#fd0178" },
+          }
+        end,
+      },
+    },
   },
   {
     "LazyVim/LazyVim",
@@ -50,34 +60,6 @@ return {
       require("better_escape").setup()
     end,
   },
-  -- {
-  --   "mikavilpas/yazi.nvim",
-  --   event = "VeryLazy",
-  --   keys = {
-  --     {
-  --       "<leader>e",
-  --       "<cmd>Yazi<cr>",
-  --       desc = "Open yazi at the current fils",
-  --     },
-  --     {
-  --       "<leader>E",
-  --       "<cmd>Yazi cwd<cr>",
-  --       desc = "Open the file manager in nvim's working directory",
-  --     },
-  --     {
-  --       "<c-up>",
-  --       "<cmd>Yazi toggle<cr>",
-  --       desc = "Resume the last yazi session",
-  --     },
-  --   },
-  --   opts = {
-  --     open_for_directories = false,
-  --     keymaps = {
-  --       show_help = "<f1>",
-  --     },
-  --   },
-  -- },
-
   -- Formatting
   {
     "stevearc/conform.nvim",
@@ -224,6 +206,13 @@ return {
     },
     keys = {
       {
+        "<leader>z",
+        function()
+          Snacks.picker.undo()
+        end,
+        desc = "Undo",
+      },
+      {
         "<leader>un",
         function()
           Snacks.notifier.hide()
@@ -231,9 +220,9 @@ return {
         desc = "Dismiss All Notifications",
       },
       {
-        "<leader>a",
+        "<leader>e",
         function()
-          Snacks.picker.explorer({ layout = "default" })
+          Snacks.picker.explorer({ layout = "default", auto_close = true })
         end,
         desc = "Explorer",
       },
@@ -288,7 +277,7 @@ return {
         desc = "Projects",
       },
       {
-        "<c-t>",
+        "<leader>t",
         function()
           Snacks.terminal.toggle(nil, { cwd = vim.fn.getcwd() })
         end,
