@@ -1,10 +1,10 @@
 -- redo
 vim.keymap.set("n", "U", "<c-r>", { desc = "Redo" })
 
-vim.keymap.set("i", "jj", "<ESC>", { silent = true })
-vim.keymap.set("i", "jk", "<ESC>", { silent = true })
-vim.keymap.set("i", "kk", "<ESC>", { silent = true })
-vim.keymap.set("i", "hh", "<ESC>", { silent = true })
+-- vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+-- vim.keymap.set("i", "jk", "<ESC>", { silent = true })
+-- vim.keymap.set("i", "kk", "<ESC>", { silent = true })
+-- vim.keymap.set("i", "hh", "<ESC>", { silent = true })
 
 vim.keymap.set("n", "<leader>r", function()
   require("persistence").select()

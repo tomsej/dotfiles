@@ -5,6 +5,13 @@ return {
   {
     "saghen/blink.cmp",
     opts = {
+      sources = {
+      per_filetype = {
+        markdown = { "lsp", "path", "buffer" }, -- bez "snippets"
+      },
+      -- volitelně default pokud chceš být explicitní
+      default = { "lsp", "path", "buffer", "snippets" },
+    },
       keymap = {
         preset = "super-tab",
         ["<CR>"] = { "select_and_accept", "fallback" },
@@ -40,6 +47,7 @@ return {
       highlight_overrides = {
         all = function()
           return {
+            CursorLine = { bg = "none" },
             NormalFloat = { fg = "none", bg = "none" },
             FlashLabel = { bg = "#fd0178" },
           }
@@ -54,12 +62,12 @@ return {
     },
   },
   -- Editor
-  {
-    "max397574/better-escape.nvim",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
+  -- {
+  --   "max397574/better-escape.nvim",
+  --   config = function()
+  --     require("better_escape").setup()
+  --   end,
+  -- },
   -- Formatting
   {
     "stevearc/conform.nvim",
@@ -444,19 +452,19 @@ return {
   },
 
   -- Mason
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = opts.ensure_installed or {}
+  --     vim.list_extend(opts.ensure_installed, {
+  --       "basedpyright",
+  --       "ruff",
+  --       "sqlfmt",
+  --     })
+  --   end,
+  -- },
   {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, {
-        "basedpyright",
-        "ruff",
-        "sqlfmt",
-      })
-    end,
-  },
-  {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
     opts = {
       mappings = {
         -- move visual selection in visual mode

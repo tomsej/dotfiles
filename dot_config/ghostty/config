@@ -1,26 +1,63 @@
-# UI
-theme = catppuccin-mocha
+# ─────────────────────────────
+# 🎨 UI & Appearance
+# ─────────────────────────────
+
+theme = Catppuccin Mocha
 background = 16131E
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 12
-cursor-invert-fg-bg = true
 
-# Clipboard
+cursor-invert-fg-bg = true
+cursor-color = "#FFD86B"
+adjust-cursor-thickness = 2
+split-divider-color = "#241c39"
+
+# ─────────────────────────────
+# 📋 Clipboard
+# ─────────────────────────────
+
 clipboard-read = "allow"
 clipboard-paste-protection = false
 
-# Quick Terminal
-quick-terminal-position = left
+# ─────────────────────────────
+# ⚡ Quick Terminal
+# ─────────────────────────────
+
+quick-terminal-position = right
 quick-terminal-animation-duration = 0
 
-# Window
+# ─────────────────────────────
+# 🪟 Window & Layout
+# ─────────────────────────────
+
 window-padding-balance = true
-window-decoration = false
+window-padding-color = extend
+window-decoration = true
 window-padding-y = 0,0
 window-padding-x = 20,0
-window-colorspace = "display-p3"
 window-save-state = always
 
-# Keybinds
-keybind = global:cmd+§=toggle_quick_terminal
+# ─────────────────────────────
+# 💻 Shell & Environment
+# ─────────────────────────────
+
+working-directory = ~/Workspace
+
+# ─────────────────────────────
+# 🧠 Usability & Behavior
+# ─────────────────────────────
+
+link-url = true
+
+# ─────────────────────────────
+# ⌨️ Keybindings
+# ─────────────────────────────
+
 keybind = performable:cmd+c=copy_to_clipboard
+
+keybind = global:ctrl+h=goto_split:left
+keybind = global:ctrl+j=goto_split:down
+keybind = global:ctrl+k=goto_split:up
+keybind = global:ctrl+l=goto_split:right
+
+keybind = shift+enter=text:\x1b\r
