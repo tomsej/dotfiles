@@ -5,6 +5,9 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:/usr/local/b
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 FPATH=~/.zfunc:$FPATH
 
+# Set XDG config directory
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Set color schemes for various tools
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 export EZA_COLORS="$(vivid generate catppuccin-mocha)"

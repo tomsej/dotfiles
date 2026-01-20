@@ -1,0 +1,73 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[user]
+	name = Radek Tomšej
+	email = radek@tomsej.cz
+
+[core]
+	editor = nvim
+	pager = delta
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	features = catppuccin-mocha
+
+[delta "lazygit"]
+	dark = true
+	line-numbers = true
+	line-numbers-left-style = "#302B44"
+	line-numbers-right-style = "#302B44"
+	line-numbers-minus-style = "#302B44"
+	line-numbers-plus-style = "#302B44"
+	line-numbers-zero-style = "#302B44"
+	minus-style = "syntax #3f1d24"
+	minus-emph-style = "syntax #6f2d35"
+	plus-style = "syntax #1e352d"
+	plus-emph-style = "syntax #2a463d"
+	zero-style = "syntax"
+	file-style = "omit"
+	hunk-header-style = "omit"
+
+[include]
+	path = ./themes/delta/catppuccin.gitconfig
+
+[init]
+	defaultBranch = main
+
+[rebase]
+	autostash = true
+	autoSquash = true
+	updateRefs = true
+
+[pull]
+	rebase = false
+
+[merge]
+	autostash = true
+	conflictstyle = zdiff3
+
+[push]
+	autoSetupRemote = true
+	default = current
+
+[fetch]
+	prune = true
+
+[branch]
+	sort = -committerdate
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[rerere]
+	enabled = true
+
+[commit]
+	verbose = true

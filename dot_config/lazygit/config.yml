@@ -1,0 +1,75 @@
+gui:
+  # Catppuccin Mocha Theme
+  theme:
+    activeBorderColor:
+      - "#8b5cf6" # Dark Purple
+      - bold
+    inactiveBorderColor:
+      - "#45475a" # Surface1 - more visible
+    optionsTextColor:
+      - "#8b5cf6" # Dark Purple
+    selectedLineBgColor:
+      - "#313244" # Surface0
+    selectedRangeBgColor:
+      - "#313244" # Surface0
+    cherryPickedCommitBgColor:
+      - "#94e2d5" # Teal
+    cherryPickedCommitFgColor:
+      - "#89b4fa" # Blue
+    unstagedChangesColor:
+      - "#f38ba8" # Red
+    defaultFgColor:
+      - "#cdd6f4" # Text
+    searchingActiveBorderColor:
+      - "#f9e2af" # Yellow
+  # Enhanced panel layout
+  sidePanelWidth: 0.2
+  mainPanelSplitMode: "flexible"
+  showCommandLog: false
+  showBottomLine: true
+  showFileTree: true
+  showListFooter: true
+  showRandomTip: false
+  nerdFontsVersion: "3"
+  border: "rounded"
+  animateExplosion: true
+  showFileIcons: true
+  commitHashLength: 7
+  showBranchCommitHash: true
+  showDivergenceFromBaseBranch: "arrowAndNumber"
+  commandLogSize: 8
+  splitDiff: "auto"
+  skipRewordInEditorWarning: false
+  expandFocusedSidePanel: true
+  scrollHeight: 2
+  scrollPastBottom: true
+  wrap: false
+
+git:
+  paging:
+    colorArg: always
+    pager: 'delta --paging=never --features "catppuccin-mocha lazygit"'
+  diffContextSize: 999
+  autoFetch: true
+  commit:
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+  parseEmoji: true
+
+os:
+  editPreset: "nvim"
+
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+
+update:
+  method: never
+
+notARepository: 'skip'
+
+promptToReturnFromSubprocess: false
+
+quitOnTopLevelReturn: false
+
+confirmOnQuit: false
