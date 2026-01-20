@@ -6,6 +6,7 @@ theme = Catppuccin Mocha
 background = 16131E
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 12
+scrollback-limit = 1000000
 
 cursor-invert-fg-bg = true
 cursor-color = "#FFD86B"
@@ -23,7 +24,8 @@ clipboard-paste-protection = false
 # ⚡ Quick Terminal
 # ─────────────────────────────
 
-quick-terminal-position = right
+quick-terminal-position = center
+quick-terminal-size = 80%,80%
 quick-terminal-animation-duration = 0
 
 # ─────────────────────────────
@@ -55,9 +57,16 @@ link-url = true
 
 keybind = performable:cmd+c=copy_to_clipboard
 
-keybind = global:ctrl+h=goto_split:left
-keybind = global:ctrl+j=goto_split:down
-keybind = global:ctrl+k=goto_split:up
-keybind = global:ctrl+l=goto_split:right
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
+
+keybind = ctrl+y>h=new_split:left
+keybind = ctrl+y>j=new_split:down
+keybind = ctrl+y>k=new_split:up
+keybind = ctrl+y>l=new_split:right
+keybind = ctrl+y>f=toggle_split_zoom
 
 keybind = shift+enter=text:\x1b\r
+keybind = global:ctrl+alt+cmd+shift+§=toggle_quick_terminal

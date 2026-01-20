@@ -118,6 +118,8 @@ alias cm="chezmoi"  # Alias for chezmoi
 alias venva="source .venv/bin/activate"  # Activate venvs
 alias reload="cm re-add ~/.config/nvim/lazy-lock.json && cm status && cm apply && source ~/.zshrc"
 alias brewup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew autoremove"
+alias ld="lumen diff --theme catppuccin-mocha"
+alias ldw="lumen diff --theme catppuccin-mocha --watch"
 
 # ---- Git Aliases ----
 alias gs="git status"  # Show working tree status
