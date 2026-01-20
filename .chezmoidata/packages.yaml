@@ -1,9 +1,13 @@
 packages:
     universal:
         taps:
+            - "homebrew/bundle"
             - "rsteube/homebrew-tap"
             - "common-fate/granted"
             - "sst/tap"
+            - "tw93/tap"
+            - "steveyegge/beads"
+            - "steipete/tap"
         brews:
             - "atuin" # Shell history management
             - "awscli" # Official Amazon AWS command-line interface
@@ -33,28 +37,43 @@ packages:
             - "zsh-completions" # Additional completion definitions for Zsh
             - "zsh-syntax-highlighting" # Fish shell-like syntax highlighting for Zsh
             - "zsh-vi-mode" # Better and friendly vi(vim) mode plugin for Zsh
+            - "rsteube/tap/carapace" # Multi-shell completion generator
             - "uv"
             - "luarocks" # Lua package manager. Used in lazyvim.
             # - "lazygit" # Simple terminal UI for git commands
-            # - "git-delta" # A syntax-highlighter for git and diff output
+            - "git-delta" # A syntax-highlighter for git and diff output
             # - "aider" # A command-line tool for AI
             # - "presenterm"
             - "fx" # Terminal JSON viewer & processor
             - "duckdb" # OLAP database in file
             - "sst/tap/opencode"
+            - "mole" # Cleanup
             # - "docker"
+            - "bun" # Fast all-in-one JavaScript runtime
+            - "chezmoi" # Dotfiles manager
+            # - "go" # Go programming language
+            - "node" # Node.js JavaScript runtime
+            # - "pnpm" # Fast, disk space efficient package manager
+            - "ruff" # Fast Python linter and formatter
+            - "vivid" # LS_COLORS generator
+            - "tailscale" # Mesh VPN
+            - "fnox" # Fort Knox for your secrets - flexible secret management tool
+            - "steveyegge/beads/bd" # Beads - task manager for AI
         casks:
+            - "steipete/tap/codexbar"
+            - "typora" # Markdown editor
             - "obsidian" # Knowledge base that works on local Markdown files
             - "leader-key" # A tool to create a leader key for your terminal
             - "shortcat" # Vim like shortcuts 
             # - "aerospace" # Aerospace is not a known cask, might be a custom or private cask.
-            - "appcleaner" # Utility to uninstall applications and clean up related files.
+            # - "appcleaner" # Utility to uninstall applications and clean up related files.
             - "calibre" # E-book management software.
-            - "codex" # AI-powered code completion tool
+            # - "codex" # AI-powered code completion tool
             - "cleanshot" # Screenshot tool with additional features.
             - "dbeaver-community" # Free and open-source SQL database management tool.
             - "font-jetbrains-mono-nerd-font" # Developer-focused font with a range of glyphs and icons.
             - "font-atkinson-hyperlegible" # A font designed for maximum legibility.
+            - "font-mononoki-nerd-font" # A programming font with a focus on readability and aesthetics.
             # - "iterm2" # Replacement for macOS's Terminal with extra features.
             - "notion" # All-in-one workspace for note-taking, project management, and more.
             - "orbstack" # Better docker desktop experience.
@@ -65,11 +84,11 @@ packages:
             # - "zed" # Rust IDE with a focus on performance and safety.
             - "zen" # Browser for quick search
             - "zed" # A lightning-fast code editor built in Rust
-            - "jordanbaird-ice" # Hide apps in manu bar
-            - "bettertouchtool" # Customizes gestures for the trackpad, mouse, and Touch Bar.
+            # - "jordanbaird-ice" # Hide apps in manu bar
+            # - "bettertouchtool" # Customizes gestures for the trackpad, mouse, and Touch Bar.
             # - "pronotes" # Make apple notes better
             # - "logseq" # A privacy-first platform for knowledge sharing and management
-            # - "notunes" # A macOS app for disabling itunes
+            - "notunes" # A macOS app for disabling iTunes
             # - "heynote"
             - "ghostty" # Terminal app with distraction-free mode
             # - "warp" # A modern terminal
@@ -80,4 +99,32 @@ packages:
             - "claude-code" # AI-powered code completion tool
             - "aldente" # Battery management tool for MacBook
             - "karabiner-elements" # Keyboard customizer for macOS
+            # - "processspy" # Process monitoring tool
+            # - "google-chrome" # Google Chrome web browser
+            - "zoom" # Video conferencing tool
+            - "notion-calendar" # Calendar app (formerly Cron)
+            - "macwhisper" # Speech-to-text app
+            - "chatgpt" # ChatGPT desktop app
         mas:
+            # - { id: 1630499622, name: "Cog" }
+            - { id: 963584693, name: "Couch" }
+            - { id: 1470584107, name: "Dato" }
+            - { id: 1355679052, name: "Dropover" }
+            - { id: 6636493997, name: "ExcalidrawZ" }
+            - { id: 1474335294, name: "GoodLinks" }
+            - { id: 6737150304, name: "iBar Pro" }
+            - { id: 1575588022, name: "MenubarX" }
+            - { id: 1032670789, name: "News Explorer" }
+            - { id: 1289583905, name: "Pixelmator Pro" }
+            - { id: 6737959724, name: "Protego" }
+            - { id: 6738274497, name: "Raycast Companion" }
+            - { id: 6445813049, name: "Spark Desktop" }
+            - { id: 1475387142, name: "Tailscale" }
+            - { id: 585829637, name: "Todoist" }
+            - { id: 6469049274, name: "Uplock" }
+            - { id: 1320666476, name: "Wipr" }
+        bun_global:
+            - "ralph-tui" # TUI for Ralph
+            - "agent-browser" # AI-powered browser
+        uv_tools:
+            - "sqlfmt" # SQL formatter

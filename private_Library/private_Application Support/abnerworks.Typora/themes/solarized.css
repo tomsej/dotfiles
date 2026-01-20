@@ -1,0 +1,1377 @@
+:root {
+    /* Solarized Color Scheme - Light Theme */
+    /* Base colors */
+    --base03: #002b36;  /* Background (Dark) */
+    --base02: #073642;  /* Background (Dark) */
+    --base01: #4f636b;  /* Content - Darker */
+    --base00: #657b83;  /* Content */
+    --base0: #839496;   /* Content */
+    --base1: #93a1a1;   /* Content */
+    --base2: #eee8d5;   /* Background (Light) */
+    --base3: #fdf6e3;   /* Background (Light) */
+    
+    /* Accent colors */
+    --yellow: #b58900;
+    --orange: #cb4b16;
+    --red: #dc322f;
+    --magenta: #d33682;
+    --violet: #6c71c4;
+    --blue: #268bd2;
+    --cyan: #2aa198;
+    --green: #859900;
+    
+    /* Application colors using Base3 as background */
+    --bg-color: var(--base3);
+    --side-bar-bg-color: var(--base2);    
+    --text-color: var(--base01);
+    --select-text-bg-color: var(--blue);
+    --item-hover-bg-color: var(--base2);
+    --control-text-color: var(--base00);
+    --control-text-hover-color: var(--base02);
+    --window-border: 1px solid var(--base1);
+    --active-file-bg-color: var(--base3);
+    --active-file-text-color: var(--base01);
+    --active-file-border-color: var(--blue);
+    --item-hover-text-color: var(--base01);
+    --primary-color: var(--blue);
+    --rawblock-edit-panel-bd: var(--base1);
+    --search-select-bg-color: var(--blue);
+}
+
+/* Font imports */
+/* Assumes Atkinson Hyperlegible and JetBrainsMono Nerd Font are installed on the system */
+
+html {
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background: var(--bg-color);
+    fill: currentColor;
+    line-height: 1.5;
+}
+
+body {
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--base01);
+    background-color: var(--base3);
+}
+
+#write {
+    max-width: 900px; /* Better for blog posts */
+    margin: 0 auto;
+    padding: 30px 40px 60px 40px; /* More spacing */
+    padding-top: 30px;
+    padding-bottom: 120px;
+}
+
+@media only screen and (min-width: 1400px) {
+    #write {
+        max-width: 1024px;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    #write {
+        max-width: 1200px;
+    }
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+    color: var(--base01);
+    border-color: transparent;
+}
+
+div.code-tooltip,
+.md-hover-tip .md-arrow:after {
+    background: var(--base2);
+}
+
+.native-window #md-notification {
+    border: 1px solid var(--base1);
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: var(--base2);
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+    outline: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+a:hover {
+    color: var(--orange);
+    outline: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+sup.md-footnote {
+    background-color: var(--base2);
+    color: var(--base01);
+}
+
+.md-toc-inner {
+    color: var(--base1)!important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    position: relative;
+    margin-top: 2.5rem; /* More spacing between sections */
+    margin-bottom: 1.2rem;
+    font-weight: bold;
+    line-height: 1.3; /* Better for headings */
+    cursor: text;
+    color: var(--base02);
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    padding: 0;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid var(--base2);
+    margin-top: 2em;
+}
+
+h2 {
+    padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid var(--base2);
+}
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+
+h4 {
+    font-size: 1.25em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 1em;
+    color: var(--base1);
+}
+
+@media (min-width: 980px) {
+    h3.md-focus:before,
+    h4.md-focus:before,
+    h5.md-focus:before,
+    h6.md-focus:before {
+        color: var(--base1);
+        border: 1px solid var(--base1);
+        border-radius: 3px;
+        position: absolute;
+        left: -1.642857143rem;
+        top: .357142857rem;
+        float: left;
+        font-size: 9px;
+        padding-left: 2px;
+        padding-right: 2px;
+        vertical-align: bottom;
+        font-weight: normal;
+        line-height: normal;
+    }
+
+    h3.md-focus:before {
+        content: 'h3';
+    }
+
+    h4.md-focus:before {
+        content: 'h4';
+    }
+
+    h5.md-focus:before {
+        content: 'h5';
+        top: 0px;
+    }
+
+    h6.md-focus:before {
+        content: 'h6';
+        top: 0px;
+    }
+}
+
+p,
+ul,
+ol,
+dl,
+table {
+    margin: 1.2em 0; /* Better spacing between paragraphs */
+}
+
+p,
+ul,
+dd,
+ol,
+hr,
+address,
+pre,
+table,
+iframe,
+.wp-caption,
+.wp-audio-shortcode,
+.wp-video-shortcode {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+audio:not([controls]) {
+    display: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+::-moz-selection {
+    background: var(--select-text-bg-color);
+    color: var(--base3);
+    text-shadow: none;
+}
+
+*.in-text-selection,
+::selection {
+    background: var(--select-text-bg-color);
+    color: var(--base3);
+    text-shadow: none;
+}
+
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+blockquote {
+    margin: 1.6em 3.2em;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+/* Better styling for lists */
+ul, ol {
+    padding-left: 24px; /* Less indentation */
+    list-style-position: outside;
+}
+
+ul {
+    list-style: square;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0;
+}
+
+li {
+    margin-bottom: 0.5em; /* Spacing between list items */
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+    color: var(--base02);
+}
+
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+hr {
+    height: 1px;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--base2);
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+    border-bottom: 1px solid var(--base2);
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+/* Better styling for quotes */
+blockquote {
+    border-left: 4px solid var(--yellow);
+    padding: 16px 20px;
+    margin: 20px 0;
+    background-color: rgba(238, 232, 213, 0.3);
+    border-radius: 0 4px 4px 0;
+    color: var(--base00);
+    font-style: italic;
+    padding-left: 1.875rem;
+    margin: 0 0 1.875rem 1.875rem;
+    padding-left: 30px;
+    margin-top: 35px;
+}
+
+blockquote blockquote {
+    padding-right: 0;
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+    font-size: 0.78em; /* 14px based on 18px base */
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code,
+tt,
+var {
+    background: rgba(238, 232, 213, 0.5);
+    color: var(--magenta);
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: var(--base3);
+    background-color: var(--base00);
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table tr {
+    border-top: 1px solid var(--base1);
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n) {
+    background-color: var(--base2);
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid var(--base1);
+    text-align: left;
+    margin: 0;
+    padding: 10px 16px;
+    background-color: var(--base2);
+    color: var(--base02);
+    vertical-align: top;
+}
+
+table tr td {
+    border: 1px solid var(--base1);
+    text-align: left;
+    margin: 0;
+    padding: 10px 16px;
+    vertical-align: top;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+table a {
+    color: var(--blue);
+}
+
+.CodeMirror-gutters {
+    border-right: 1px solid var(--base1);
+    background: var(--base2);
+}
+
+.CodeMirror {
+    font-size: 0.85em !important;
+}
+
+.CodeMirror pre {
+    font-size: 1em !important;
+}
+
+/* CodeMirror Syntax Highlighting - Catppuccin Mocha */
+.cm-s-inner .cm-keyword { color: #cba6f7; } /* keyword - Mauve */
+.cm-s-inner .cm-atom { color: #f38ba8; } /* atom, self - Red */
+.cm-s-inner .cm-number { color: #fab387; } /* number, bool - Peach */
+.cm-s-inner .cm-def { color: #89b4fa; } /* function definitions - Blue */
+.cm-s-inner .cm-variable { color: #cdd6f4; } /* variables, names - Text */
+.cm-s-inner .cm-variable-2 { color: #b4befe; } /* special variables - Lavender */
+.cm-s-inner .cm-variable-3 { color: #cdd6f4; } /* other variables - Text */
+.cm-s-inner .cm-property { color: #89b4fa; } /* properties, labels - Blue */
+.cm-s-inner .cm-operator { color: #89dceb; } /* operators - Sky */
+.cm-s-inner .cm-comment { color: #9399b2; font-style: normal; } /* comments, meta, punctuation - Overlay 2 */
+.cm-s-inner .cm-string { color: #a6e3a1; } /* strings - Green */
+.cm-s-inner .cm-string-2 { color: #a6e3a1; } /* strings - Green */
+.cm-s-inner .cm-meta { color: #9399b2; } /* meta - Overlay 2 */
+.cm-s-inner .cm-qualifier { color: #f9e2af; } /* qualifiers, className, typeName - Yellow */
+.cm-s-inner .cm-builtin { color: #fab387; } /* builtin, constants - Peach */
+.cm-s-inner .cm-bracket { color: #9399b2; } /* brackets, separator - Overlay 2 */
+.cm-s-inner .cm-tag { color: #cba6f7; } /* tags - Mauve */
+.cm-s-inner .cm-attribute { color: #f9e2af; } /* attributes - Yellow */
+.cm-s-inner .cm-header { color: #89b4fa; font-weight: bold; } /* headers - Blue */
+.cm-s-inner .cm-quote { color: #a6e3a1; } /* quotes - Green */
+.cm-s-inner .cm-link { color: #89b4fa; text-decoration: underline; } /* links - Blue */
+.cm-s-inner .cm-error { color: #f38ba8; } /* errors, invalid - Red */
+.cm-s-inner .cm-url { color: #94e2d5; } /* url - Teal */
+.cm-s-inner .cm-type { color: #f9e2af; } /* types - Yellow */
+
+/* CodeMirror background and UI */
+.CodeMirror {
+    background-color: #16131e !important;
+    color: #cdd6f4 !important;
+}
+
+.CodeMirror-gutters {
+    background-color: #16131e !important;
+    border-right: 1px solid #45475a !important;
+}
+
+.CodeMirror-linenumber {
+    color: #a6adc8 !important;
+}
+
+.CodeMirror-cursor {
+    border-left-color: #f5e0dc !important;
+}
+
+.CodeMirror-selected,
+.CodeMirror-focused .CodeMirror-selected {
+    background-color: #585b70 !important;
+}
+
+.CodeMirror-activeline-background {
+    background-color: #16131e !important;
+}
+
+/* Fix code fence info/language line */
+.md-fences .code-tooltip,
+.md-fences .CodeMirror-code > div:first-child {
+    background-color: #16131e !important;
+}
+
+.md-fences .md-diagram-panel {
+    background-color: #16131e !important;
+}
+
+.md-fences,
+code,
+tt {
+    background-color: var(--base2);
+    color: var(--magenta);
+    border: 1px solid #d3d0c1; /* Subtle border for highlighting */
+    border-radius: 4px; /* More rounded borders */
+    padding: 3px 6px 1px 6px; /* More internal padding */
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", Consolas, "Liberation Mono", Courier, monospace;
+}
+
+.md-fences {
+    margin-bottom: 20px; /* More spacing */
+    margin-top: 20px;
+    padding: 16px 20px; /* More comfortable for blocks */
+    border: 1px solid #45475a;
+    background-color: #16131e !important;
+    overflow-x: auto; /* For long code */
+    line-height: 1.6;
+}
+
+pre.md-fences {
+    padding: 10px 10px 10px 30px;
+    margin-bottom: 20px;
+    background: #16131e !important;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -2.2em;
+    right: 4px;
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.task-list-item {
+    padding-left: 32px;
+}
+
+.task-list-item input {
+    top: 3px;
+    left: 8px;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto;
+    margin-left: -1.3em;
+    margin-top: 0.3rem;
+    -webkit-appearance: none;
+}
+
+.md-task-list-item > input:before {
+    content: "";
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid var(--base01);
+    background-color: var(--base3);
+    margin-top: -0.4rem;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    content: '\221A';
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    color: var(--base02);
+}
+
+@media screen and (min-width: 914px) {
+    /*body {
+        width: 854px;
+        margin: 0 auto;
+    }*/
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+/* Specific styles for Jekyll Front Matter */
+#write pre.md-meta-block {
+    padding: 16px;
+    font-size: 0.8em;
+    line-height: 1.5;
+    background-color: var(--base2); /* Light theme background for YAML */
+    color: var(--base01);
+    border-radius: 6px 6px 0 0;
+    margin-bottom: 30px !important;
+    border-bottom: 0.1em dashed var(--base1);
+    padding-bottom: 0.6em;
+}
+
+/* Highlight for Jekyll tags */
+.md-tag {
+    color: var(--yellow);
+    font-weight: 600;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
+    border: none;
+    border-radius: 0px;
+    color: var(--base1);
+    text-decoration: underline;
+    left: -1.4rem;
+    top: 0.2rem;
+}
+
+#write>h3.md-focus:before {
+    top: 2px;
+}
+
+#write>h4.md-focus:before {
+    top: 2px;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", Consolas, "Liberation Mono", Courier, monospace;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    color: var(--base1);
+    background-color: var(--base2);
+}
+
+.md-expand.md-image>.md-meta {
+    color: var(--base01);
+}
+
+.md-toc {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.md-toc-item {
+    color: var(--blue);
+}
+
+#write div.md-toc-tooltip {
+    background-color: var(--base3);
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+/* Quick open and search */
+.auto-suggest-container {
+    border: 0px;
+    background-color: var(--base2);
+}
+
+#typora-quick-open {
+    background-color: var(--base2);
+}
+
+#typora-quick-open input {
+    background-color: var(--base2);
+    border: 0;
+    border-bottom: 1px solid var(--base1);
+    color: var(--base01);
+}
+
+#typora-quick-open-item {
+    background-color: var(--base3);
+    border-color: var(--base1);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.typora-quick-open-item {
+    background-color: inherit;
+    color: inherit;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+    background-color: var(--primary-color);
+    color: var(--base3);
+}
+
+.typora-quick-open-item:hover {
+    background-color: rgba(40, 139, 210, 0.8);
+}
+
+.typora-search-spinner > div {
+    background-color: var(--base01);
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/* Buttons and UI */
+.btn,
+.btn .btn-default {
+    background: transparent;
+    color: var(--base01);
+}
+
+.btn-primary {
+    color: var(--base3);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-default:hover, 
+.btn-default:focus, 
+.btn-default.focus, 
+.btn-default:active, 
+.btn-default.active, 
+.open > .dropdown-toggle.btn-default {
+    color: var(--base02);
+    border: 1px solid var(--base1);
+    background-color: var(--base2);
+}
+
+.ty-table-edit {
+    border-top: 1px solid var(--base1);
+    background-color: var(--base3);
+}
+
+.popover-title {
+    background: transparent;
+}
+
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+    color: var(--base02);
+    background: var(--base2);
+}
+
+#toc-dropmenu {
+    background: rgba(253, 246, 227, 0.95);
+    border: 1px solid rgba(147, 161, 161, 0.3);
+}
+
+#toc-dropmenu .divider {
+    background-color: var(--base1);
+}
+
+.outline-expander:before {
+    top: 2px;
+}
+
+/* Sidebar */
+#typora-sidebar {
+    box-shadow: none;
+    border-right: 1px dashed;
+    border-right: none;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.sidebar-tabs {
+    border-bottom: 0;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+    border-left: 1px dashed;
+}
+
+.outline-title-wrapper .btn {
+    color: inherit;
+}
+
+.outline-item:hover {
+    border-color: var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--base02);
+}
+
+/* Focus attributes */
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr,
+.md-header-span .md-attr {
+    color: var(--base1);
+    display: inline;
+}
+
+.md-comment {
+    color: var(--blue);
+    opacity: 0.8;
+}
+
+.md-inline-math script {
+    color: var(--blue);
+}
+
+.md-inline-math svg {
+    color: var(--base01);
+}
+
+#math-inline-preview .md-arrow:after {
+    background: var(--base2);
+}
+
+/* Modals */
+.modal-content {
+    background: var(--bg-color);
+    border: 0;
+}
+
+.modal-title {
+    font-size: 1.5em;
+}
+
+.modal-content input {
+    background-color: rgba(238, 232, 213, 0.5);
+    color: var(--base01);
+}
+
+.modal-content .input-group-addon {
+    color: var(--base01);
+}
+
+.modal-backdrop {
+    background-color: rgba(88, 110, 117, 0.3);
+}
+
+.modal-backdrop.in {
+    opacity: 1;
+    backdrop-filter: blur(1px);
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+.modal-footer .btn-default, 
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.md-table-resize-popover {
+    background-color: var(--base2);
+}
+
+.form-inline .input-group .input-group-addon {
+    color: var(--base01);
+}
+
+#md-searchpanel {
+    border-bottom: 1px dashed var(--base1);
+}
+
+#md-searchpanel input {
+    color: var(--base01);
+}
+
+.md-search-hit {
+    background: rgba(181, 137, 0, 0.3);
+    color: var(--base02);
+}
+
+.md-search-hit * {
+    color: var(--base02);
+}
+
+/* Context menu and UI */
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info {
+    background-color: var(--base2);
+}
+
+.context-menu.dropdown-menu .divider,
+.dropdown-menu .divider {
+    background-color: var(--base1);
+    opacity: 1;
+}
+
+footer {
+    color: inherit;
+}
+
+footer.ty-footer {
+    border-color: var(--base1);
+}
+
+@media (max-width: 1000px) {
+    footer {
+        border-top: none;
+    }
+    footer:hover {
+        color: inherit;
+    }
+}
+
+#file-info-file-path .file-info-field-value:hover {
+    background-color: var(--base2);
+    color: var(--base02);
+}
+
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--bg-color);
+}
+
+.megamenu-menu-panel h2,
+.megamenu-menu-panel h1,
+.long-btn {
+    color: inherit;
+}
+
+.megamenu-menu-panel input[type='text'] {
+    background: inherit;
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+#recent-file-panel-action-btn {
+    background: inherit;
+    border: 1px solid #93a1a1;
+}
+
+.megamenu-menu-panel .dropdown-menu > li > a {
+    color: inherit;
+    background-color: var(--base2);
+    text-decoration: none;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+    color: inherit;
+    font-weight: bold;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+    color: var(--base02);
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid var(--base1);
+    background: transparent;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+    background-color: inherit;
+}
+
+#w-unpin {
+    background-color: var(--primary-color);
+}
+
+#top-titlebar, #top-titlebar * {
+    color: var(--item-hover-text-color);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count {
+    background: var(--base2);
+}
+
+#toggle-sourceview-btn:hover {
+    color: var(--base02);
+    background: var(--base2);
+}
+
+/* Scrollbars */
+.typora-node::-webkit-scrollbar {
+    width: 5px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical {
+    background: rgba(88, 110, 117, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(88, 110, 117, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(88, 110, 117, 0.30);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(88, 110, 117, 0.50);
+}
+
+#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(88, 110, 117, 0.30);
+}
+
+/* File management */
+.sidebar-footer-item:hover,
+.footer-item:hover {
+    background: inherit;
+    color: var(--base02);
+}
+
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a:after {
+    color: var(--base02);
+}
+
+#sidebar-files-menu {
+    border: solid 1px;
+    box-shadow: 4px 4px 20px rgba(147, 161, 161, 0.3);
+    background-color: var(--bg-color);
+}
+
+.file-list-item {
+    border-bottom: none;
+}
+
+.file-list-item-summary {
+    opacity: 1;
+}
+
+.file-list-item.active:first-child {
+    border-top: none;
+}
+
+.file-node-background {
+    height: 32px;
+}
+
+.file-library-node.active>.file-node-content,
+.file-list-item.active {
+    color: var(--active-file-text-color);
+}
+
+.file-library-node.active>.file-node-background {
+    background-color: var(--active-file-bg-color);
+}
+
+.file-list-item.active {
+    background-color: var(--active-file-bg-color);
+}
+
+[data-is-directory="true"] .file-node-content {
+    margin-bottom: 0;
+}
+
+.file-node-title {
+    line-height: 22px;
+}
+
+.html-for-mac .file-node-open-state, 
+.html-for-mac .file-node-icon {
+    line-height: 26px;
+}
+
+.nav-group-item:active {
+    background-color: var(--base2) !important;
+}
+
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover {
+    color: var(--base02);
+}
+
+/* Tooltip */
+#ty-tooltip {
+    background-color: var(--base2);
+    color: var(--base01);
+}
+
+/* Math */
+.md-mathjax-midline {
+    background-color: #d3d0c1;
+    border-bottom: none;
+}
+
+/* Preferences */
+.ty-preferences .btn-default {
+    background: transparent;
+}
+
+.ty-preferences .btn-default:hover {
+    background: #d3d0c1;
+}
+
+.ty-preferences select {
+    border: 1px solid var(--base1);
+    height: 21px;
+}
+
+.ty-preferences .nav-group-item.active,
+.export-item.active,
+.export-items-list-control,
+.export-detail {
+    background: var(--item-hover-bg-color);
+}
+
+.ty-preferences input[type="search"] {
+    border-color: var(--base1);
+    background: var(--base2);
+    line-height: 22px;
+    border-radius: 6px;
+    color: var(--base01);
+}
+
+.ty-preferences input[type="search"]:focus {
+    box-shadow: none;
+}
+
+.clear-btn-icon {
+    top: 8px;
+}
+
+.file-node-expanded>.file-node-children {
+    display: grid;
+}
+
+/* Alerts */
+.md-alert-text-note {
+    color: var(--blue);
+}
+
+.md-alert-text-important {
+    color: var(--violet);
+}
+
+.md-alert-text-warning {
+    color: var(--yellow);
+}
+
+mark {
+    background: var(--yellow);
+    color: var(--base3);
+}
+
+/* Focus mode */
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: var(--base1) !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
+    opacity: 0.5 !important;
+}
+
+.on-focus-mode li[cid]:not(.md-focus-container) {
+    color: var(--base1);
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
+    color: var(--base1) !important;
+}
+
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+    color: var(--base01);
+}
+
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
+    color: var(--base1) !important;
+}
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(181, 137, 0, 0.12);
+}
+
+/* Diagrams */
+#write .md-focus .md-diagram-panel {
+    border: 1px solid var(--base1);
+    margin-left: -1px;
+    width: calc(100% + 2px);
+}
+
+#write .md-focus.md-fences-with-lineno .md-diagram-panel {
+    margin-left: auto;
+}
+
+.md-diagram-panel-error {
+    color: var(--red);
+}
+
+/* File management and UI improvements */
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}

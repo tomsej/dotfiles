@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+echo "Installing/upgrading uv tools..."
+
+{{ range .packages.universal.uv_tools -}}
+echo "Ensuring latest version: {{ . }}"
+uv tool install {{ . | quote }} --upgrade
+{{ end -}}
+{{ end -}}

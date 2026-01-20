@@ -1,7 +1,12 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
+# Packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 
-brew bundle --file=/dev/stdin <<EOF
+# Update Homebrew and all taps first
+brew update
+
+# Install and upgrade all packages
+brew bundle --file=/dev/stdin --cleanup <<EOF
 {{ range .packages.universal.taps -}}
 tap {{ . | quote | replace " " "\", \"" }}
 {{ end -}}
