@@ -58,7 +58,6 @@ packages:
             - "vivid" # LS_COLORS generator
             - "tailscale" # Mesh VPN
             - "fnox" # Fort Knox for your secrets - flexible secret management tool
-            - "steveyegge/beads/bd" # Beads - task manager for AI
         casks:
             - "steipete/tap/codexbar"
             - "typora" # Markdown editor

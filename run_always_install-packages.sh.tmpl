@@ -4,6 +4,8 @@
 
 # Update Homebrew and all taps first
 brew update
+brew upgrade
+brew upgrade --cask --greedy
 
 # Install and upgrade all packages
 brew bundle --file=/dev/stdin --cleanup <<EOF
@@ -20,4 +22,5 @@ cask {{ . | quote }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{ end -}}
 EOF
+brew cleanup && brew autoremove
 {{ end -}}

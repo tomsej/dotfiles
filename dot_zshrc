@@ -1,7 +1,7 @@
 # ==========================
 # PATH and Environment Setup
 # ==========================
-export PATH=/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:$PATH:$HOME/go/bin
+export PATH=/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:${HOME}/go/bin:${HOME}/.bun/bin:$PATH
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 FPATH=~/.zfunc:$FPATH
 
