@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Tools hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+echo "Installing Playwright browsers for uv tools..."
+
+# Install Chromium for notebooklm-py if it exists
+if [ -f ~/.local/share/uv/tools/notebooklm-py/bin/python ]; then
+    echo "Installing Chromium for notebooklm-py..."
+    ~/.local/share/uv/tools/notebooklm-py/bin/python -m playwright install chromium
+fi
+
+echo "Playwright browser installation complete."
+{{ end -}}

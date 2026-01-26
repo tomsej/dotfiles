@@ -61,6 +61,8 @@ packages:
             - "fnox" # Fort Knox for your secrets - flexible secret management tool
         casks:
             - "steipete/tap/codexbar"
+            - "opencode-desktop"
+            - "droid"
             - "typora" # Markdown editor
             - "obsidian" # Knowledge base that works on local Markdown files
             - "leader-key" # A tool to create a leader key for your terminal
@@ -93,6 +95,7 @@ packages:
             - "ghostty" # Terminal app with distraction-free mode
             # - "warp" # A modern terminal
             - "cursor" # An AI editor
+            - "antigravity" # GOogle ai tool
             # - "reminders-menubar"
             - "antinote" # Minimalist note-taking app
             - "insomnia" # REST client for testing APIs
@@ -107,7 +110,6 @@ packages:
             - "chatgpt" # ChatGPT desktop app
         mas:
             # - { id: 1630499622, name: "Cog" }
-            - { id: 963584693, name: "Couch" }
             - { id: 1470584107, name: "Dato" }
             - { id: 1355679052, name: "Dropover" }
             - { id: 6636493997, name: "ExcalidrawZ" }
@@ -126,5 +128,8 @@ packages:
         bun_global:
             - "ralph-tui" # TUI for Ralph
             - "agent-browser" # AI-powered browser
+            - "ralphy-cli"
+            - "playwright"
         uv_tools:
             - "sqlfmt" # SQL formatter
+            - "notebooklm-py[browser]" # NotebookLM CLI with Playwright support
