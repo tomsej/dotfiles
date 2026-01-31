@@ -2,15 +2,21 @@
 # PATH and Environment Setup
 # ==========================
 export PATH="/opt/homebrew/bin:/opt/homebrew/opt:${HOME}/.local/bin:/usr/local/bin/tailscale:$HOME/go/bin:$HOME/.bun/bin:$PATH"
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+
+# Cache brew prefix to avoid multiple calls
+BREW_PREFIX="/opt/homebrew"
+
+fpath+=("$BREW_PREFIX/share/zsh/site-functions")
 FPATH=~/.zfunc:$FPATH
 
 # Set XDG config directory
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Set color schemes for various tools
-export LS_COLORS="$(vivid generate catppuccin-mocha)"
-export EZA_COLORS="$(vivid generate catppuccin-mocha)"
+# Cache vivid output to avoid generating twice
+_VIVID_COLORS="$(vivid generate catppuccin-mocha)"
+export LS_COLORS="$_VIVID_COLORS"
+export EZA_COLORS="$_VIVID_COLORS"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # ==========================
@@ -43,23 +49,41 @@ eval "$(starship init zsh)"
 # Plugin Initialization
 # ==========================
 # Initialize Zsh completion
+# Only regenerate compdump once per day for faster startup
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+# Check if dump is older than 24 hours
+if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
+  # Dump is fresh, skip check (-C flag)
+  compinit -C
+else
+  # Dump is old or missing, regenerate
   compinit
-done
-compinit -C
+fi
 
 # Check if Homebrew is installed
 if type brew &>/dev/null; then
   # Add Homebrew completions to FPATH
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH=$BREW_PREFIX/share/zsh-completions:$FPATH
   
   # Source Zsh plugins
   source ~/.zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
-  # source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  source "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-  source <(fzf --zsh)
+  # source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  
+  # Defer syntax highlighting to improve startup time (saves ~6ms)
+  _zsh_highlight_deferred_init() {
+    source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    precmd_functions=(${precmd_functions:#_zsh_highlight_deferred_init})
+  }
+  precmd_functions+=(_zsh_highlight_deferred_init)
+  
+  source "$BREW_PREFIX/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+  
+  # Cache fzf integration to avoid process substitution on every shell start
+  _FZF_ZSH_CACHE="$HOME/.cache/fzf-zsh-integration"
+  if [[ ! -f "$_FZF_ZSH_CACHE" ]] || [[ "$(command -v fzf)" -nt "$_FZF_ZSH_CACHE" ]]; then
+    fzf --zsh > "$_FZF_ZSH_CACHE"
+  fi
+  source "$_FZF_ZSH_CACHE"
   
 fi
 
@@ -67,7 +91,13 @@ fi
 if command -v carapace &> /dev/null; then
   export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
   zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-  source <(carapace _carapace)
+  
+  # Cache carapace completion to avoid process substitution
+  _CARAPACE_CACHE="$HOME/.cache/carapace-zsh-completion"
+  if [[ ! -f "$_CARAPACE_CACHE" ]] || [[ "$(command -v carapace)" -nt "$_CARAPACE_CACHE" ]]; then
+    carapace _carapace > "$_CARAPACE_CACHE"
+  fi
+  source "$_CARAPACE_CACHE"
 fi
 
 # ---- Completion settings -----
@@ -135,6 +165,9 @@ alias gl="git log --oneline --graph --decorate"  # Show commit history
 alias gco="git checkout"  # Switch branches
 alias gb="git branch"  # List branches
 
+alias lg="lazygit"  # Launch lazygit
+alias lgf="cdi && lazygit"  # Find directories and launch lazygit
+
 # ---- Terraform Aliases ----
 alias tf="terraform"
 
@@ -142,6 +175,10 @@ alias tf="terraform"
 alias oc="opencode"  # OpenCode CLI
 alias occ="opencode --continue"  # Continue last session
 alias ocf="cdi && opencode"  # Find directories and open with OpenCode
+
+# ---- Typora ------
+alias md="open -a Typora"
+alias mdf="fzf --preview 'bat --color=always {}' | xargs open -a Typora"
 
 # ==========================
 # Environment Variables
@@ -154,7 +191,14 @@ export EDITOR="nvim"  # Set default editor
 # ==========================
 # Mise Initialization
 # ==========================
-eval "$($(brew --prefix)/bin/mise activate zsh)"
+# Defer mise activation to speed up shell startup (saves ~20ms)
+# Load in background using precmd hook - mise will be ready before you cd anywhere
+_mise_deferred_init() {
+  eval "$($BREW_PREFIX/bin/mise activate zsh)"
+  # Remove this function from precmd after first run
+  precmd_functions=(${precmd_functions:#_mise_deferred_init})
+}
+precmd_functions+=(_mise_deferred_init)
 
 # ==========================
 # Custom Functions
@@ -197,7 +241,7 @@ _fzf_comprun() {
 }
 
 # Open last markdown file in .opencode/plans with Typora
-function md() {
+function mdp() {
   local plans_dir=".opencode/plans"
   if [ ! -d "$plans_dir" ]; then
     echo "Error: $plans_dir directory not found"

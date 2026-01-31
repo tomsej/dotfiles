@@ -46,9 +46,9 @@ gui:
   wrap: false
 
 git:
-  paging:
-    colorArg: always
-    pager: 'delta --paging=never --features "catppuccin-mocha lazygit"'
+  pagers:
+    - colorArg: always
+      pager: 'delta --paging=never --features "catppuccin-mocha lazygit"'
   diffContextSize: 999
   autoFetch: true
   commit:

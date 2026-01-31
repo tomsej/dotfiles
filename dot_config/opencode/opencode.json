@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "aura",
+  "model": "anthropic/claude-sonnet-4-5",
   "disabled_providers": ["amazon-bedrock", "github-models"],
   "mcp": {},
   "autoupdate": true,
-  "plugin": ["opencode-gemini-auth@latest"]
 }

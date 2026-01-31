@@ -43,6 +43,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
+      flavour = "mocha",
       transparent_background = true,
       highlight_overrides = {
         all = function()
@@ -68,21 +69,6 @@ return {
   --     require("better_escape").setup()
   --   end,
   -- },
-  -- Formatting
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.formatters.sqlfluff = {
-        args = { "format", "--dialect=ansi", "-t", "jinja", "-" },
-      }
-      for _, ft in ipairs({ "sql", "mysql", "plsql" }) do
-        opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
-        table.insert(opts.formatters_by_ft[ft], "sqlfluff")
-      end
-    end,
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -114,18 +100,7 @@ return {
         enabled = false,
       }
       opts.servers.sqlls = {
-        settings = {},
-      }
-      opts.setup = {
-        sqlls = function()
-          if vim.fn.has("nvim-0.10") == 0 then
-            LazyVim.lsp.on_attach(function(client, _)
-              if client.name == "sqlls" then
-                client.server_capabilities.documentFormattingProvider = true
-              end
-            end)
-          end
-        end,
+        enabled = false,
       }
     end,
   },

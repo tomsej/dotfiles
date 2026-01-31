@@ -48,6 +48,7 @@ packages:
             - "fx" # Terminal JSON viewer & processor
             - "duckdb" # OLAP database in file
             - "sst/tap/opencode"
+            - "repomix"
             - "mole" # Cleanup
             # - "docker"
             - "bun" # Fast all-in-one JavaScript runtime

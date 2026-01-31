@@ -26,13 +26,7 @@
                                     }
                                 },
                                 "to": [{ "key_code": "down_arrow" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "frontmost_application_unless",
-                                        "bundle_identifiers": ["com.mitchellh.ghostty"]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
                                 "from": {
@@ -43,13 +37,7 @@
                                     }
                                 },
                                 "to": [{ "key_code": "up_arrow" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "frontmost_application_unless",
-                                        "bundle_identifiers": ["com.mitchellh.ghostty"]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
                                 "from": {
