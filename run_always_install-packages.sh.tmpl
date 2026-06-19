@@ -2,13 +2,12 @@
 #!/bin/bash
 # Packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 
-# Update Homebrew and all taps first
-brew update
-brew upgrade
-brew upgrade --cask --greedy
+set -u
 
-# Install and upgrade all packages
-brew bundle --file=/dev/stdin --cleanup <<EOF
+BREWFILE="$(mktemp -t brewfile.XXXXXX)"
+trap 'rm -f "$BREWFILE"' EXIT
+
+cat > "$BREWFILE" <<EOF
 {{ range .packages.universal.taps -}}
 tap {{ . | quote | replace " " "\", \"" }}
 {{ end -}}
@@ -22,5 +21,17 @@ cask {{ . | quote }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{ end -}}
 EOF
+
+# Update Homebrew and upgrade everything
+brew update
+brew upgrade
+brew upgrade --cask --greedy
+
+# Install missing packages from Brewfile
+brew bundle install --file="$BREWFILE"
+
+# Remove anything installed but not in Brewfile (non-interactive)
+HOMEBREW_BUNDLE_FORCE_CLEANUP=1 brew bundle cleanup --force --file="$BREWFILE"
+
 brew cleanup && brew autoremove
 {{ end -}}

@@ -2,10 +2,36 @@
 #!/bin/bash
 # Packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 
+set -u
+
 echo "Installing/upgrading global bun packages..."
 
+DESIRED=(
 {{ range .packages.universal.bun_global -}}
-echo "Ensuring latest version: {{ . }}"
-bun install -g {{ . | quote }}
+  {{ . | quote }}
 {{ end -}}
+)
+
+for pkg in "${DESIRED[@]}"; do
+  echo "Ensuring latest version: $pkg"
+  bun install -g "$pkg"
+done
+
+# Remove bun globals not in the desired list
+INSTALLED=$(bun pm ls -g --json 2>/dev/null | jq -r '.dependencies | keys[]' 2>/dev/null || true)
+if [ -n "$INSTALLED" ]; then
+  while IFS= read -r installed; do
+    keep=0
+    for pkg in "${DESIRED[@]}"; do
+      if [ "$pkg" = "$installed" ]; then
+        keep=1
+        break
+      fi
+    done
+    if [ "$keep" -eq 0 ]; then
+      echo "Removing unmanaged bun global: $installed"
+      bun remove -g "$installed"
+    fi
+  done <<< "$INSTALLED"
+fi
 {{ end -}}

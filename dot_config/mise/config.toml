@@ -1,2 +1,6 @@
 [settings]
 experimental = true
+
+[tools]
+python = "3.12.11"
+sops = "3.11.0"
