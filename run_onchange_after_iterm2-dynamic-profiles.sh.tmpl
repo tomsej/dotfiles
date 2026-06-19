@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Symlink iTerm2 DynamicProfiles from chezmoi-managed config to Application Support
+# Hash: {{ include "dot_config/iterm2/DynamicProfiles/catppuccin-mocha.json" | sha256sum }}
+
+DYNAMIC_PROFILES_DIR="$HOME/Library/Application Support/iTerm2/DynamicProfiles"
+SOURCE_DIR="$HOME/.config/iterm2/DynamicProfiles"
+
+mkdir -p "$DYNAMIC_PROFILES_DIR"
+
+for f in "$SOURCE_DIR"/*.json; do
+    [ -f "$f" ] || continue
+    name=$(basename "$f")
+    ln -sf "$f" "$DYNAMIC_PROFILES_DIR/$name"
+done
+{{ end -}}

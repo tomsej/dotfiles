@@ -1,0 +1,13 @@
+# ws — workspace switcher configuration
+
+# Where your main projects live
+workspace_dir = "~/Workspace"
+
+# Where worktrees are created (<worktree_dir>/<repo>/<branch>)
+worktree_dir = "~/workspace/worktrees"
+
+# How many entries to keep in MRU history
+max_history = 100
+
+# Directories to skip when scanning
+exclude = [".DS_Store", ".pi"]

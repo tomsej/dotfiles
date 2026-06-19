@@ -1,0 +1,19 @@
+# Kitty workspace session template
+# Used by ws() — placeholders WORKSPACE_DIR and PROJECT_NAME are replaced at runtime
+# Can also be used directly: kitty --session workspace.session
+#
+# Layout: splits (pi 80% left, terminal 20% right)
+# Windows: 1) pi (primary)  2) terminal
+
+new_tab PROJECT_NAME
+layout splits
+cd WORKSPACE_DIR
+
+# Window 1: pi coding agent (80% left — shown first)
+launch --title pi pi
+
+# Window 2: plain terminal (20% right)
+launch --location=vsplit --title terminal
+
+# Set 80/20 split ratio
+layout_action bias 80 20

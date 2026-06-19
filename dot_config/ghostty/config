@@ -6,12 +6,13 @@ theme = Catppuccin Mocha
 background = 16131E
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 12
-scrollback-limit = 1000000
+scrollback-limit = 50000
 
 cursor-invert-fg-bg = true
 cursor-color = "#FFD86B"
 adjust-cursor-thickness = 2
 split-divider-color = "#241c39"
+unfocused-split-opacity = 0.92
 
 # ─────────────────────────────
 # 📋 Clipboard
@@ -19,14 +20,16 @@ split-divider-color = "#241c39"
 
 clipboard-read = "allow"
 clipboard-paste-protection = false
+copy-on-select = clipboard
 
 # ─────────────────────────────
 # ⚡ Quick Terminal
 # ─────────────────────────────
 
 quick-terminal-position = center
-quick-terminal-size = 80%,80%
+quick-terminal-size = 95%,95%
 quick-terminal-animation-duration = 0
+quick-terminal-autohide = true
 
 # ─────────────────────────────
 # 🪟 Window & Layout
@@ -38,12 +41,15 @@ window-decoration = true
 window-padding-y = 0,0
 window-padding-x = 20,0
 window-save-state = always
+macos-titlebar-style = tabs
 
 # ─────────────────────────────
 # 💻 Shell & Environment
 # ─────────────────────────────
 
 working-directory = ~/Workspace
+window-inherit-working-directory = true
+shell-integration-features = cursor,sudo,title,ssh-env
 
 # ─────────────────────────────
 # 🧠 Usability & Behavior
@@ -57,16 +63,24 @@ link-url = true
 
 keybind = performable:cmd+c=copy_to_clipboard
 
-keybind = ctrl+shift+h=goto_split:left
-keybind = ctrl+shift+j=goto_split:bottom
-keybind = ctrl+shift+k=goto_split:top
-keybind = ctrl+shift+l=goto_split:right
+keybind = ctrl+a>u=resize_split:left,240
 
-keybind = ctrl+y>h=new_split:left
-keybind = ctrl+y>j=new_split:down
-keybind = ctrl+y>k=new_split:up
-keybind = ctrl+y>l=new_split:right
-keybind = ctrl+y>f=toggle_split_zoom
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:bottom
+keybind = alt+k=goto_split:top
+keybind = alt+l=goto_split:right
 
-keybind = shift+enter=text:\x1b\r
+# Shift+Enter: CSI u sequence (tmux extended-keys csi-u compatible)
+# Apps that understand CSI u get a real Shift+Enter; others treat as Enter.
+keybind = shift+enter=text:\x1b[13;2u
 keybind = global:ctrl+alt+cmd+shift+§=toggle_quick_terminal
+
+# Avoid Cmd+plus/minus/0 font zoom colliding with cmux shortcuts on CZ layout.
+keybind = cmd++=unbind
+keybind = cmd+==unbind
+keybind = cmd+-=unbind
+keybind = cmd+0=unbind
+
+keybind = cmd+alt+==increase_font_size:1
+keybind = cmd+alt+-=decrease_font_size:1
+keybind = cmd+alt+0=reset_font_size

@@ -10,14 +10,9 @@ $git_status\
 $fill\
 $package\
 $python\
-$lua\
 $nodejs\
 $golang\
-$haskell\
-$rust\
-$ruby\
 $aws\
-$docker_context\
 $jobs\
 $cmd_duration\
 $line_break\
@@ -78,6 +73,18 @@ style = 'sky'
 symbol = ' '
 format = '◦ [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = false
+
+[lua]
+disabled = true
+
+[haskell]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
 
 [aws]
 symbol = ' '

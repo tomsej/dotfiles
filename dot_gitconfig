@@ -20,19 +20,38 @@
 
 [delta "lazygit"]
 	dark = true
+	side-by-side = false
 	line-numbers = true
-	line-numbers-left-style = "#302B44"
-	line-numbers-right-style = "#302B44"
-	line-numbers-minus-style = "#302B44"
-	line-numbers-plus-style = "#302B44"
-	line-numbers-zero-style = "#302B44"
-	minus-style = "syntax #3f1d24"
-	minus-emph-style = "syntax #6f2d35"
-	plus-style = "syntax #1e352d"
-	plus-emph-style = "syntax #2a463d"
+	navigate = true
+	wrap-max-lines = unlimited
+	# Use catppuccin-mocha colors for line numbers
+	line-numbers-left-style = "#6c7086"
+	line-numbers-right-style = "#6c7086"
+	line-numbers-minus-style = "bold #f38ba8"
+	line-numbers-plus-style = "bold #a6e3a1"
+	line-numbers-zero-style = "#6c7086"
+	# Diff colors matching catppuccin-mocha (same as lumen's theme)
+	# 10% red 90% base
+	minus-style = "syntax #35293b"
+	# 25% red 75% base
+	minus-emph-style = "bold syntax #53394c"
+	# 10% green 90% base
+	plus-style = "syntax #2c333a"
+	# 25% green 75% base
+	plus-emph-style = "bold syntax #40504b"
 	zero-style = "syntax"
+	# Moved line styles
+	map-styles = \
+		bold purple => syntax "#494060", \
+		bold blue => syntax "#394361", \
+		bold cyan => syntax "#384d5e", \
+		bold yellow => syntax "#544f4e"
+	# Hide file/hunk headers (lazygit shows filename in side panel)
 	file-style = "omit"
+	file-decoration-style = "omit"
 	hunk-header-style = "omit"
+	hunk-header-decoration-style = "omit"
+	syntax-theme = "Catppuccin Mocha"
 
 [include]
 	path = ./themes/delta/catppuccin.gitconfig
@@ -65,6 +84,13 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+	tool = kitty
+
+[difftool]
+	prompt = false
+
+[difftool "kitty"]
+	cmd = kitten diff $LOCAL $REMOTE
 
 [rerere]
 	enabled = true

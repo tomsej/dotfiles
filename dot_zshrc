@@ -146,10 +146,40 @@ alias work="cd ~/Workspace"  # Go to Workspace directory
 # ---- System & Tools Aliases ----
 alias ls="eza --long --group-directories-first --icons"  # Use eza for ls
 alias cat="bat"  # Use bat instead of cat
+alias clear='clear'
 alias mr="mise run"  # Alias for mise run
 alias cm="chezmoi"  # Alias for chezmoi
 alias venva="source .venv/bin/activate"  # Activate venvs
-alias reload="cm re-add ~/.config/nvim/lazy-lock.json && cm status && cm apply && source ~/.zshrc"
+unalias reload 2>/dev/null
+reload() {
+  # Modes:
+  #   reload         -> status only, no prompt, then apply (skips conflicts)
+  #   reload -r      -> auto re-add home -> source (home wins)
+  #   reload -f      -> force apply source -> home (source wins, overwrites home)
+  #   RELOAD_MODE=readd|force|skip env var as default
+  local mode="${RELOAD_MODE:-skip}"
+  case "$1" in
+    -r|--readd) mode=readd ;;
+    -f|--force) mode=force ;;
+    -s|--skip)  mode=skip  ;;
+  esac
+
+  local changed
+  changed="$(chezmoi status 2>/dev/null)"
+  if [[ -n "$changed" ]]; then
+    echo "chezmoi diff (mode=$mode):"
+    printf '%s\n' "$changed"
+    echo
+    case "$mode" in
+      readd) chezmoi re-add --recursive ~ 2>/dev/null ;;
+      force) chezmoi apply --force 2>/dev/null ;;
+      skip)  : ;;
+    esac
+  fi
+
+  chezmoi apply --keep-going 2>/dev/null
+  pi update && source ~/.zshrc
+}
 alias brewup="brew update && brew upgrade && brew upgrade --cask --greedy && brew cleanup && brew autoremove"
 alias ld="lumen diff --theme catppuccin-mocha"
 alias ldw="lumen diff --theme catppuccin-mocha --watch"
@@ -157,24 +187,55 @@ alias ldw="lumen diff --theme catppuccin-mocha --watch"
 # ---- Git Aliases ----
 alias gs="git status"  # Show working tree status
 alias ga="git add"  # Add files to staging
-alias gc="git commit -m"  # Commit with message
-alias gp="git push"  # Push to remote
-alias gpl="git pull"  # Pull from remote
+alias gcm="git commit -m"  # Commit with message
+alias gp="git pull"  # Pull from remote
+alias gpl="git pull"  # Pull from remote (alias)
+alias gpu="git push"  # Push to remote
 alias gd="git diff"  # Show changes
 alias gl="git log --oneline --graph --decorate"  # Show commit history
-alias gco="git checkout"  # Switch branches
+alias gco="git switch"  # Switch branches (safe)
 alias gb="git branch"  # List branches
+alias gc-="git switch -"  # Toggle to previous branch
+
+# Detect repo default branch (main/master), prefer origin/HEAD
+_git_default_branch() {
+  git symbolic-ref --quiet refs/remotes/origin/HEAD 2>/dev/null \
+    | sed 's@^refs/remotes/origin/@@' && return
+  for b in main master; do
+    git show-ref --verify --quiet "refs/heads/$b" && { echo "$b"; return; }
+  done
+}
+
+# Jump to default branch and fast-forward pull. The everyday "get me home".
+gm() {
+  local def; def=$(_git_default_branch)
+  [ -z "$def" ] && { echo "no main/master found"; return 1; }
+  git switch "$def" && git pull --ff-only
+}
+
+# Fuzzy branch switch (local + remote) with commit preview
+gc() {
+  local branch
+  branch=$(git branch --all --sort=-committerdate \
+    --format='%(refname:short)' \
+    | grep -v '^origin/HEAD' \
+    | sed 's|^origin/||' \
+    | awk '!seen[$0]++' \
+    | fzf --prompt="branch> " --height=50% --reverse \
+          --preview 'git log --oneline --graph --color=always --decorate -30 {}') || return
+  [ -n "$branch" ] && git switch "$branch"
+}
+alias gcof="gc"  # backward-compat alias
+alias gcb="gh branch"  # interactive branch switcher (gh-branch extension)
+
+alias c="claude"  # Claude Code
+alias cc="claude --dangerously-skip-permissions"  # Skip permission prompts
 
 alias lg="lazygit"  # Launch lazygit
 alias lgf="cdi && lazygit"  # Find directories and launch lazygit
 
 # ---- Terraform Aliases ----
 alias tf="terraform"
-
-# ---- OpenCode Aliases ----
-alias oc="opencode"  # OpenCode CLI
-alias occ="opencode --continue"  # Continue last session
-alias ocf="cdi && opencode"  # Find directories and open with OpenCode
 
 # ---- Typora ------
 alias md="open -a Typora"
@@ -185,8 +246,9 @@ alias mdf="fzf --preview 'bat --color=always {}' | xargs open -a Typora"
 # ==========================
 export AWS_REGION="eu-west-1"  # Set AWS region
 export AWS_DEFAULT_REGION="eu-west-1"  # Set default AWS region
-export AWS_PROFILE="oddin"  # Set AWS profile
+#export AWS_PROFILE="oddin"  # Set AWS profile
 export EDITOR="nvim"  # Set default editor
+export FNOX_AGE_KEY_FILE=$HOME/.ssh/id_ed25519
 
 # ==========================
 # Mise Initialization
@@ -195,6 +257,8 @@ export EDITOR="nvim"  # Set default editor
 # Load in background using precmd hook - mise will be ready before you cd anywhere
 _mise_deferred_init() {
   eval "$($BREW_PREFIX/bin/mise activate zsh)"
+  # fnox auto-loads secrets when entering a dir with fnox.toml
+  command -v fnox >/dev/null 2>&1 && eval "$(fnox activate zsh)"
   # Remove this function from precmd after first run
   precmd_functions=(${precmd_functions:#_mise_deferred_init})
 }
@@ -203,6 +267,7 @@ precmd_functions+=(_mise_deferred_init)
 # ==========================
 # Custom Functions
 # ==========================
+
 # yazi settings to enable exit and stay in changed directory
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -238,6 +303,38 @@ _fzf_comprun() {
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
+}
+
+
+# Unified workspaces TUI — projects + worktrees in one picker
+# Opens a new kitty tab with 3 stacked windows: pi (primary), lazygit, terminal
+function ws() {
+  python3.13 "$HOME/.config/workspaces/ws.py" "$@"
+}
+
+# Pick a project from ~/Workspace and create+start detached aoe session
+function aoes() {
+  local workspace="${WORKSPACE_DIR:-$HOME/Workspace}"
+  if [ ! -d "$workspace" ]; then
+    echo "Error: $workspace not found"
+    return 1
+  fi
+
+  local project
+  project=$(fd --type=d --max-depth=1 --min-depth=1 . "$workspace" \
+    | fzf --prompt="project> " \
+          --preview 'eza --tree --color=always --level=2 {} | head -100')
+
+  [ -z "$project" ] && return 0
+
+  local default_title=$(basename "$project")
+  local title
+  printf "Session name [%s]: " "$default_title"
+  read title
+  [ -z "$title" ] && title="$default_title"
+
+  aoe add -t "$title" "$@" "$project"
+  aoe session start "$title"
 }
 
 # Open last markdown file in .opencode/plans with Typora

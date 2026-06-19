@@ -43,33 +43,31 @@ gui:
   expandFocusedSidePanel: true
   scrollHeight: 2
   scrollPastBottom: true
-  wrap: false
-
+  wrap: true
 git:
   pagers:
     - colorArg: always
-      pager: 'delta --paging=never --features "catppuccin-mocha lazygit"'
-  diffContextSize: 999
+      pager: 'delta --paging=never --features "lazygit"'
+  diffContextSize: 3
   autoFetch: true
   commit:
     autoWrapCommitMessage: true
     autoWrapWidth: 72
   parseEmoji: true
-
 os:
   editPreset: "nvim"
-
 refresher:
   refreshInterval: 10
   fetchInterval: 60
-
 update:
   method: never
-
 notARepository: 'skip'
-
 promptToReturnFromSubprocess: false
-
 quitOnTopLevelReturn: false
-
 confirmOnQuit: false
+customCommands:
+  - key: 'F'
+    description: 'Show whole file diff'
+    command: 'git diff -U99999 -- "{{.SelectedFile.Name}}" | delta --paging=always --features "lazygit"'
+    context: 'files'
+    output: terminal
