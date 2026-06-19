@@ -1,2 +1,4 @@
 .aider*
 .env
+.backup-pi-switch/
+.pi/tasks/
