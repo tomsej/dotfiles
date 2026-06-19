@@ -1,0 +1,21 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Apply tweakcc customizations (Catppuccin Mocha theme) to Claude Code.
+# Re-runs whenever the tweakcc config changes. Note: must also be re-applied
+# after Claude Code updates, since CC updates overwrite the patched binary.
+# Hash: {{ include "dot_config/tweakcc/config.json" | sha256sum }}
+
+set -u
+
+# Locate tweakcc (installed via bun_global) and bail quietly if absent.
+TWEAKCC="$(command -v tweakcc || true)"
+[ -z "$TWEAKCC" ] && [ -x "$HOME/.bun/bin/tweakcc" ] && TWEAKCC="$HOME/.bun/bin/tweakcc"
+if [ -z "$TWEAKCC" ]; then
+    echo "tweakcc not found, skipping theme apply (will run on next change)."
+    exit 0
+fi
+
+echo "Applying tweakcc theme to Claude Code..."
+"$TWEAKCC" --apply --patches themes || \
+    echo "tweakcc apply failed (is Claude Code installed?), skipping."
+{{ end -}}

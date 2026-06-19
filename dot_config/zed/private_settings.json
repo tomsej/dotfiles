@@ -1,0 +1,192 @@
+{
+    /////////////////////////////////////////////////////////////////
+    /// THEME & APPEARANCE
+    /////////////////////////////////////////////////////////////////
+    "theme": "Catppuccin Mocha Custom",
+    "icon_theme": "Catppuccin Mocha",
+    "ui_font_size": 14,
+    "ui_font_family": "JetBrainsMonoNL Nerd Font",
+
+    /////////////////////////////////////////////////////////////////
+    /// FONTS
+    /////////////////////////////////////////////////////////////////
+    "buffer_font_family": "JetBrainsMonoNL Nerd Font",
+    "buffer_font_size": 12,
+    "buffer_font_features": {
+        "liga": true, // Ligatures enabled
+        "calt": true,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// TITLE BAR
+    /////////////////////////////////////////////////////////////////
+    "title_bar": {
+        "show_project_items": false,
+        "show_onboarding_banner": false,
+        "show_sign_in": true,
+        "show_user_picture": true,
+        "show_branch_name": true,
+        "show_branch_icon": false,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// TAB BAR
+    /////////////////////////////////////////////////////////////////
+    "tab_bar": {
+        "show": true,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// TOOLBAR
+    /////////////////////////////////////////////////////////////////
+    "toolbar": {
+        "selections_menu": true,
+        "agent_review": true,
+        "quick_actions": false,
+        "breadcrumbs": false, // No breadcrumbs - matching VS Code
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// STATUS BAR
+    /////////////////////////////////////////////////////////////////
+    "status_bar": {
+        "active_language_button": true,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// SCROLLBAR - Hidden like VS Code
+    /////////////////////////////////////////////////////////////////
+    "scrollbar": {
+        "show": "never",
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// GUTTER / LINE NUMBERS
+    /////////////////////////////////////////////////////////////////
+    "gutter": {
+        "line_numbers": true,
+        "code_actions": false, // No lightbulb - matching VS Code
+        "folds": false, // No folding controls - matching VS Code
+        "runnables": true,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// EDITOR
+    /////////////////////////////////////////////////////////////////
+    "cursor_blink": false, // Solid cursor - matching VS Code "solid"
+    "show_whitespaces": "none", // No whitespace rendering
+    "show_wrap_guides": false,
+    "indent_guides": {
+        "enabled": false, // No indent guides - matching VS Code
+    },
+    "current_line_highlight": "none", // No line highlight - matching VS Code
+    "hover_popover_enabled": false, // No hover hints - matching VS Code
+    "show_inline_completions": true, // Inline suggestions enabled
+    "soft_wrap": "none",
+
+    // Inlay hints
+    "inlay_hints": {
+        "enabled": false,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// PROJECT PANEL (Sidebar / Explorer)
+    /////////////////////////////////////////////////////////////////
+    "project_panel": {
+        "button": true,
+        "dock": "right", // Matching your keymap (ToggleRightDock)
+        "indent_size": 16, // Match VS Code indent
+        "auto_fold_dirs": false, // No compact folders
+        "git_status": false, // No git decorations in explorer
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// FILE SETTINGS
+    /////////////////////////////////////////////////////////////////
+    "autosave": {
+        "after_delay": {
+            "milliseconds": 1000,
+        },
+    },
+    "ensure_final_newline_on_save": true, // Insert final newline
+    "remove_trailing_whitespace_on_save": true,
+    "format_on_save": "on",
+    "hard_tabs": false,
+    "tab_size": 4,
+
+    /////////////////////////////////////////////////////////////////
+    /// GIT
+    /////////////////////////////////////////////////////////////////
+    "git": {
+        "path_style": "file_path_first",
+        "inline_blame": {
+            "enabled": true, // Git blame decorations - matching VS Code
+        },
+        "git_gutter": "hide", // No green/red bars - matching VS Code scm.diffDecorations: none
+    },
+    "git_panel": {
+        "collapse_untracked_diff": true,
+        "tree_view": true,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// VIM
+    /////////////////////////////////////////////////////////////////
+    "vim_mode": true,
+
+    /////////////////////////////////////////////////////////////////
+    /// TERMINAL
+    /////////////////////////////////////////////////////////////////
+    "terminal": {
+        "font_family": "JetBrainsMonoNL Nerd Font",
+        "font_size": 12,
+        "toolbar": {
+            "breadcrumbs": false,
+        },
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// SEARCH
+    /////////////////////////////////////////////////////////////////
+    "search": {
+        "regex": false,
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// LANGUAGE OVERRIDES
+    /////////////////////////////////////////////////////////////////
+    "languages": {
+        "Python": {
+            "formatter": {
+                "external": {
+                    "command": "ruff",
+                    "arguments": [
+                        "format",
+                        "--stdin-filename",
+                        "{buffer_path}",
+                        "-",
+                    ],
+                },
+            },
+            "format_on_save": "on",
+            "tab_size": 4,
+        },
+        "Markdown": {
+            "buffer_font_family": "Atkinson Hyperlegible",
+            "buffer_font_size": 14,
+            "soft_wrap": "editor_width",
+        },
+    },
+
+    /////////////////////////////////////////////////////////////////
+    /// COLLABORATION
+    /////////////////////////////////////////////////////////////////
+    "show_call_status_icon": false,
+
+    /////////////////////////////////////////////////////////////////
+    /// TELEMETRY
+    /////////////////////////////////////////////////////////////////
+    "telemetry": {
+        "metrics": false,
+    },
+}

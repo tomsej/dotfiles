@@ -1,0 +1,279 @@
+{
+  "ai.providers" : {
+    "claude" : true,
+    "codex" : true,
+    "cursor" : true,
+    "droid" : true,
+    "opencode" : true,
+    "pi" : true
+  },
+  "app.muxy.mobile.serverEnabled" : true,
+  "app.muxy.mobile.serverPort" : 4865,
+  "editor.richInputFontFamily" : "SF Mono",
+  "editor.richInputImageStrategy" : "clipboard",
+  "editor.richInputLineHeightMultiplier" : 1.2,
+  "muxy.activeSidebar" : "",
+  "muxy.app.confirmQuit" : true,
+  "muxy.general.autoCopyTerminalSelection" : true,
+  "muxy.general.autoExpandWorktreesOnProjectSwitch" : false,
+  "muxy.general.defaultWorktreeParentPath" : "",
+  "muxy.notifications.desktopEnabled" : true,
+  "muxy.notifications.sound" : "Blow",
+  "muxy.notifications.toastEnabled" : false,
+  "muxy.notifications.toastPosition" : "Top Right",
+  "muxy.projectPicker.defaultDirectory" : "/Users/tomsej/Workspace",
+  "muxy.projectPicker.mode" : "custom",
+  "muxy.projects.keepOpenWhenNoTabs" : true,
+  "muxy.recording.autoSend" : false,
+  "muxy.recording.language" : "en-ID",
+  "muxy.richInput.floating" : false,
+  "muxy.richInput.position" : "bottom",
+  "muxy.sentry.consent" : "denied",
+  "muxy.showHomeProject" : true,
+  "muxy.showResourceUsageInStatusBar" : true,
+  "muxy.showStatusBar" : true,
+  "muxy.sidebarCollapsedStyle" : "icons",
+  "muxy.sidebarExpandedStyle" : "wide",
+  "muxy.tabs.confirmCloseRunningProcess" : false,
+  "muxy.terminalOffline.enabled" : true,
+  "muxy.terminalOffline.idleThresholdSeconds" : 300,
+  "muxy.theme.dark" : "GitHub Dark High Contrast",
+  "muxy.theme.light" : "Catppuccin Mocha",
+  "muxy.ui.scale" : "regular",
+  "muxy.update.channel" : "beta",
+  "shortcuts.app" : {
+    "closePane" : {
+      "key" : "w",
+      "modifiers" : 1179648
+    },
+    "closeTab" : {
+      "key" : "w",
+      "modifiers" : 1048576
+    },
+    "cycleNextTabAcrossPanes" : {
+      "key" : "tab",
+      "modifiers" : 262144
+    },
+    "cyclePreviousTabAcrossPanes" : {
+      "key" : "tab",
+      "modifiers" : 393216
+    },
+    "findInTerminal" : {
+      "key" : "f",
+      "modifiers" : 1048576
+    },
+    "focusPaneDown" : {
+      "key" : "j",
+      "modifiers" : 1572864
+    },
+    "focusPaneLeft" : {
+      "key" : "h",
+      "modifiers" : 1572864
+    },
+    "focusPaneRight" : {
+      "key" : "l",
+      "modifiers" : 1572864
+    },
+    "focusPaneUp" : {
+      "key" : "k",
+      "modifiers" : 1572864
+    },
+    "navigateBack" : {
+      "key" : "leftarrow",
+      "modifiers" : 1310720
+    },
+    "navigateForward" : {
+      "key" : "rightarrow",
+      "modifiers" : 1310720
+    },
+    "newHomeTab" : {
+      "key" : "n",
+      "modifiers" : 1048576
+    },
+    "newTab" : {
+      "key" : "t",
+      "modifiers" : 1048576
+    },
+    "nextProject" : {
+      "key" : "j",
+      "modifiers" : 1179648
+    },
+    "nextTab" : {
+      "key" : "h",
+      "modifiers" : 1048576
+    },
+    "openProject" : {
+      "key" : "o",
+      "modifiers" : 1048576
+    },
+    "pinUnpinTab" : {
+      "key" : "p",
+      "modifiers" : 1179648
+    },
+    "previousProject" : {
+      "key" : "k",
+      "modifiers" : 1179648
+    },
+    "previousTab" : {
+      "key" : "l",
+      "modifiers" : 1048576
+    },
+    "refreshWorktrees" : {
+      "key" : "r",
+      "modifiers" : 1572864
+    },
+    "reloadConfig" : {
+      "key" : "r",
+      "modifiers" : 1179648
+    },
+    "renameTab" : {
+      "key" : "t",
+      "modifiers" : 1179648
+    },
+    "selectProject1" : {
+      "key" : "1",
+      "modifiers" : 1179648
+    },
+    "selectProject2" : {
+      "key" : "2",
+      "modifiers" : 1179648
+    },
+    "selectProject3" : {
+      "key" : "3",
+      "modifiers" : 1179648
+    },
+    "selectProject4" : {
+      "key" : "4",
+      "modifiers" : 1179648
+    },
+    "selectProject5" : {
+      "key" : "5",
+      "modifiers" : 1179648
+    },
+    "selectProject6" : {
+      "key" : "6",
+      "modifiers" : 1179648
+    },
+    "selectProject7" : {
+      "key" : "7",
+      "modifiers" : 1179648
+    },
+    "selectProject8" : {
+      "key" : "8",
+      "modifiers" : 1179648
+    },
+    "selectProject9" : {
+      "key" : "9",
+      "modifiers" : 1179648
+    },
+    "selectTab1" : {
+      "key" : "1",
+      "modifiers" : 1048576
+    },
+    "selectTab2" : {
+      "key" : "2",
+      "modifiers" : 1048576
+    },
+    "selectTab3" : {
+      "key" : "3",
+      "modifiers" : 1048576
+    },
+    "selectTab4" : {
+      "key" : "4",
+      "modifiers" : 1048576
+    },
+    "selectTab5" : {
+      "key" : "5",
+      "modifiers" : 1048576
+    },
+    "selectTab6" : {
+      "key" : "6",
+      "modifiers" : 1048576
+    },
+    "selectTab7" : {
+      "key" : "7",
+      "modifiers" : 1048576
+    },
+    "selectTab8" : {
+      "key" : "8",
+      "modifiers" : 1048576
+    },
+    "selectTab9" : {
+      "key" : "9",
+      "modifiers" : 1048576
+    },
+    "splitDown" : {
+      "key" : "d",
+      "modifiers" : 1179648
+    },
+    "splitRight" : {
+      "key" : "d",
+      "modifiers" : 1048576
+    },
+    "submitRichInput" : {
+      "key" : "return",
+      "modifiers" : 1048576
+    },
+    "submitRichInputWithoutReturn" : {
+      "key" : "return",
+      "modifiers" : 1179648
+    },
+    "terminalOmnibox" : {
+      "key" : "o",
+      "modifiers" : 1572864
+    },
+    "terminalOmniboxCommands" : {
+      "key" : "p",
+      "modifiers" : 1179648
+    },
+    "terminalOmniboxProjects" : {
+      "key" : "p",
+      "modifiers" : 1572864
+    },
+    "terminalOmniboxWorkspaces" : {
+      "key" : "s",
+      "modifiers" : 1572864
+    },
+    "terminalOmniboxWorktrees" : {
+      "key" : "w",
+      "modifiers" : 1572864
+    },
+    "toggleExtensionConsole" : {
+      "key" : "`",
+      "modifiers" : 1048576
+    },
+    "toggleFullScreen" : {
+      "key" : "f",
+      "modifiers" : 1310720
+    },
+    "toggleMaximizePane" : {
+      "key" : "f",
+      "modifiers" : 1572864
+    },
+    "toggleRichInput" : {
+      "key" : "i",
+      "modifiers" : 1048576
+    },
+    "toggleSidebar" : {
+      "key" : "b",
+      "modifiers" : 1179648
+    },
+    "toggleThemePicker" : {
+      "key" : "m",
+      "modifiers" : 1179648
+    },
+    "toggleVoiceRecording" : {
+      "key" : "i",
+      "modifiers" : 1179648
+    }
+  },
+  "shortcuts.customCommands" : {
+    "prefixCombo" : {
+      "key" : "g",
+      "modifiers" : 1048576
+    },
+    "shortcuts" : [
+
+    ]
+  }
+}

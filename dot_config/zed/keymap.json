@@ -1,0 +1,59 @@
+    // Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && mode == single_line",
+    "bindings": {
+      "ctrl-j": ["workspace::SendKeystrokes", "down"],
+      "ctrl-k": ["workspace::SendKeystrokes", "up"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // + Buffers
+      // Switch between buffers
+      "shift-h": "pane::ActivatePrevItem",
+      "shift-l": "pane::ActivateNextItem",
+      // Close other items
+      "space b o": "pane::CloseInactiveItems",
+      // File finder
+      "space space": "file_finder::Toggle",
+      "space ,": "file_finder::Toggle",
+      // Open recent project
+      "space f p": "projects::OpenRecent",
+      // Project search
+      "space /": "pane::DeploySearch",
+      // TODO: Open other files
+      // Show project panel with current file
+      "space e": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space e": "workspace::ToggleRightDock"
+    }
+  },
+  // Empty pane, set of keybindings that are available when there is no active editor
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // Open file finder
+      "space space": "file_finder::Toggle",
+      // Open recent project
+      "space f p": "projects::OpenRecent"
+    }
+  }
+]
